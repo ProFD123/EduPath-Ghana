@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SHS School Directory | EduPath Ghana</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #0b5ed7;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .filters h2 {
+            margin-bottom: 15px;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+        }
+
+        .search-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #0b5ed7;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #084298;
+        }
+
+        .school-count {
+            margin: 15px 0;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .school-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .school-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .school-card h3 {
+            color: #0b5ed7;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .school-card p {
+            margin: 7px 0;
+            line-height: 1.5;
+        }
+
+        .school-card a {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            padding: 11px;
+            background: #0b5ed7;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .save-favourite-btn {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 11px;
+            border: 1px solid #0b5ed7;
+            background: white;
+            color: #0b5ed7;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-favourite-btn.saved {
+            background: #0b5ed7;
+            color: white;
+        }
+
+        .message {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #111827;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+
+            .filter-grid,
+            .school-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🏫 SHS School Directory</h1>
+        <p>
+            Find senior high schools based on location,
+            school type and programme.
+        </p>
+    </header>
+
+
+    <main class="container">
+
+        <section class="filters">
+
+            <h2>Find Your SHS</h2>
+
+            <div class="filter-grid">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search school, location or district..."
+                >
+
+                <select id="regionFilter">
+                    <option value="all">
+                        All Regions
+                    </option>
+                </select>
+
+                <select id="typeFilter">
+                    <option value="all">
+                        All School Types
+                    </option>
+                </select>
+
+                <select id="programmeFilter">
+                    <option value="all">
+                        All Programmes
+                    </option>
+                </select>
+
+            </div>
+
+            <button
+                class="search-btn"
+                id="searchButton"
+            >
+                Search
+            </button>
+
+        </section>
+
+
+        <div
+            class="school-count"
+            id="schoolCount"
+        >
+            Loading schools...
+        </div>
+
+
+        <section
+            class="school-grid"
+            id="schoolResults"
+        ></section>
+
+    </main>
+
+
+    <footer>
+        © 2026 EduPath Ghana. All rights reserved.
+    </footer>
+
+
+    <script src="./favourites.js"></script>
+
+
+    <script>
+
+        const API_URL = "/api/schools";
+
+        let schools = [];
+
+
+        // =====================================
+        // LOAD SCHOOLS
+        // =====================================
+
+        async function loadSchools() {
+
+            const results =
+                document.getElementById(
+                    "schoolResults"
+                );
+
+            const count =
+                document.getElementById(
+                    "schoolCount"
+                );
+
+            results.innerHTML = `
+                <div class="message">
+                    Loading schools...
+                </div>
+            `;
+
+            try {
+
+                const response =
+                    await fetch(API_URL);
+
+                const data =
+                    await response.json();
+
+                console.log(
+                    "Schools API response:",
+                    data
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Could not load schools."
+                    );
+
+                }
+
+
+                // IMPORTANT:
+                // The backend returns:
+                // { success: true, count: 136, schools: [...] }
+
+                if (
+                    data &&
+                    Array.isArray(data.schools)
+                ) {
+
+                    schools = data.schools;
+
+                } else if (
+                    Array.isArray(data)
+                ) {
+
+                    // Backup in case API
+                    // directly returns an array.
+
+                    schools = data;
+
+                } else {
+
+                    schools = [];
+
+                }
+
+
+                populateFilters();
+
+                displaySchools();
+
+            } catch (error) {
+
+                console.error(
+                    "School loading error:",
+                    error
+                );
+
+                count.textContent =
+                    "Unable to load schools.";
+
+                results.innerHTML = `
+                    <div class="message">
+
+                        <h2>
+                            ⚠️ Unable to load schools
+                        </h2>
+
+                        <p>
+                            Please make sure the
+                            EduPath Ghana backend
+                            is running.
+                        </p>
+
+                    </div>
+                `;
+
+            }
+
+        }
+
+
+        // =====================================
+        // POPULATE FILTERS
+        // =====================================
+
+        function populateFilters() {
+
+            const regionFilter =
+                document.getElementById(
+                    "regionFilter"
+                );
+
+            const typeFilter =
+                document.getElementById(
+                    "typeFilter"
+                );
+
+            const programmeFilter =
+                document.getElementById(
+                    "programmeFilter"
+                );
+
+
+            const regions =
+                [
+                    ...new Set(
+                        schools
+                            .map(
+                                school =>
+                                    school.region
+                            )
+                            .filter(Boolean)
+                    )
+                ].sort();
+
+
+            const types =
+                [
+                    ...new Set(
+                        schools
+                            .map(
+                                school =>
+                                    school.type
+                            )
+                            .filter(Boolean)
+                    )
+                ].sort();
+
+
+            const programmes =
+                [
+                    ...new Set(
+                        schools.flatMap(
+                            school =>
+                                Array.isArray(
+                                    school.programmes
+                                )
+                                    ? school.programmes
+                                    : []
+                        )
+                    )
+                ].sort();
+
+
+            regions.forEach(
+                region => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        region;
+
+                    option.textContent =
+                        region;
+
+                    regionFilter.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            types.forEach(
+                type => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        type;
+
+                    option.textContent =
+                        type;
+
+                    typeFilter.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            programmes.forEach(
+                programme => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        programme;
+
+                    option.textContent =
+                        programme;
+
+                    programmeFilter.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+        }
+
+
+        // =====================================
+        // DISPLAY SCHOOLS
+        // =====================================
+
+        function displaySchools() {
+
+            const results =
+                document.getElementById(
+                    "schoolResults"
+                );
+
+            const count =
+                document.getElementById(
+                    "schoolCount"
+                );
+
+
+            const search =
+                document
+                    .getElementById(
+                        "searchInput"
+                    )
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const selectedRegion =
+                document
+                    .getElementById(
+                        "regionFilter"
+                    )
+                    .value;
+
+
+            const selectedType =
+                document
+                    .getElementById(
+                        "typeFilter"
+                    )
+                    .value;
+
+
+            const selectedProgramme =
+                document
+                    .getElementById(
+                        "programmeFilter"
+                    )
+                    .value;
+
+
+            const filtered =
+                schools.filter(
+                    school => {
+
+                        const name =
+                            String(
+                                school.name ||
+                                ""
+                            ).toLowerCase();
+
+
+                        const location =
+                            String(
+                                school.location ||
+                                ""
+                            ).toLowerCase();
+
+
+                        const district =
+                            String(
+                                school.district ||
+                                ""
+                            ).toLowerCase();
+
+
+                        const region =
+                            school.region ||
+                            "";
+
+
+                        const type =
+                            school.type ||
+                            "";
+
+
+                        const programmes =
+                            Array.isArray(
+                                school.programmes
+                            )
+                                ? school.programmes
+                                : [];
+
+
+                        const matchesSearch =
+                            !search ||
+                            name.includes(search) ||
+                            location.includes(search) ||
+                            district.includes(search);
+
+
+                        const matchesRegion =
+                            selectedRegion === "all" ||
+                            region === selectedRegion;
+
+
+                        const matchesType =
+                            selectedType === "all" ||
+                            type === selectedType;
+
+
+                        const matchesProgramme =
+                            selectedProgramme === "all" ||
+                            programmes.includes(
+                                selectedProgramme
+                            );
+
+
+                        return (
+                            matchesSearch &&
+                            matchesRegion &&
+                            matchesType &&
+                            matchesProgramme
+                        );
+
+                    }
+                );
+
+
+            count.textContent =
+                `${filtered.length} school${
+                    filtered.length === 1
+                        ? ""
+                        : "s"
+                } found`;
+
+
+            results.innerHTML = "";
+
+
+            if (
+                filtered.length === 0
+            ) {
+
+                results.innerHTML = `
+                    <div class="message">
+
+                        <h2>
+                            🔍 No schools found
+                        </h2>
+
+                        <p>
+                            We couldn't find a school
+                            matching your search.
+                        </p>
+
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            filtered.forEach(
+                school => {
+
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
+
+                    card.className =
+                        "school-card";
+
+
+                    const programmes =
+                        Array.isArray(
+                            school.programmes
+                        )
+                            ? school.programmes
+                            : [];
+
+
+                    card.innerHTML = `
+
+                        <h3>
+                            ${escapeHTML(
+                                school.name
+                            )}
+                        </h3>
+
+                        <p>
+                            📍
+                            <strong>Location:</strong>
+                            ${escapeHTML(
+                                school.location
+                            )}
+                        </p>
+
+                        <p>
+                            🌍
+                            <strong>Region:</strong>
+                            ${escapeHTML(
+                                school.region
+                            )}
+                        </p>
+
+                        <p>
+                            📌
+                            <strong>District:</strong>
+                            ${escapeHTML(
+                                school.district
+                            )}
+                        </p>
+
+                        <p>
+                            🏫
+                            <strong>Type:</strong>
+                            ${escapeHTML(
+                                school.type
+                            )}
+                        </p>
+
+                        <p>
+                            👥
+                            <strong>Gender:</strong>
+                            ${escapeHTML(
+                                school.gender
+                            )}
+                        </p>
+
+                        <p>
+                            🛏️
+                            <strong>Accommodation:</strong>
+                            ${escapeHTML(
+                                school.accommodation
+                            )}
+                        </p>
+
+                        <p>
+                            📚
+                            <strong>Programmes:</strong>
+                            ${escapeHTML(
+                                programmes.join(", ")
+                            )}
+                        </p>
+
+                        <a
+                            href="school-details.html?id=${encodeURIComponent(
+                                school.id
+                            )}"
+                        >
+                            View School Details →
+                        </a>
+
+                        <button
+                            class="save-favourite-btn"
+                            data-school-id="${escapeHTML(
+                                school.id
+                            )}"
+                        >
+                            ♡ Save School
+                        </button>
+
+                    `;
+
+
+                    results.appendChild(
+                        card
+                    );
+
+
+                    const button =
+                        card.querySelector(
+                            ".save-favourite-btn"
+                        );
+
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            toggleFavourite(
+                                school.id,
+                                button
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+            updateFavouriteButtons();
+
+        }
+
+
+        // =====================================
+        // SAVE / REMOVE FAVOURITE
+        // =====================================
+
+        async function toggleFavourite(
+            schoolId,
+            button
+        ) {
+
+            if (
+                !window.EduPathFavourites ||
+                !window.EduPathFavourites.available
+            ) {
+
+                window.location.href =
+                    "student-login.html";
+
+                return;
+
+            }
+
+
+            try {
+
+                const saved =
+                    await window.EduPathFavourites.check(
+                        "schools",
+                        schoolId
+                    );
+
+
+                if (saved) {
+
+                    await window.EduPathFavourites.remove(
+                        "schools",
+                        schoolId
+                    );
+
+                    button.textContent =
+                        "♡ Save School";
+
+                    button.classList.remove(
+                        "saved"
+                    );
+
+                } else {
+
+                    await window.EduPathFavourites.save(
+                        "schools",
+                        schoolId
+                    );
+
+                    button.textContent =
+                        "♥ Saved";
+
+                    button.classList.add(
+                        "saved"
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Could not update your saved school."
+                );
+
+            }
+
+        }
+
+
+        // =====================================
+        // UPDATE SAVED BUTTONS
+        // =====================================
+
+        async function updateFavouriteButtons() {
+
+            if (
+                !window.EduPathFavourites ||
+                !window.EduPathFavourites.available
+            ) {
+
+                return;
+
+            }
+
+
+            const buttons =
+                document.querySelectorAll(
+                    ".save-favourite-btn"
+                );
+
+
+            for (
+                const button
+                of buttons
+            ) {
+
+                const schoolId =
+                    button.dataset.schoolId;
+
+
+                const saved =
+                    await window.EduPathFavourites.check(
+                        "schools",
+                        schoolId
+                    );
+
+
+                if (saved) {
+
+                    button.textContent =
+                        "♥ Saved";
+
+                    button.classList.add(
+                        "saved"
+                    );
+
+                }
+
+            }
+
+        }
+
+
+        // =====================================
+        // ESCAPE HTML
+        // =====================================
+
+        function escapeHTML(value) {
+
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        // =====================================
+        // EVENTS
+        // =====================================
+
+        document
+            .getElementById(
+                "searchButton"
+            )
+            .addEventListener(
+                "click",
+                displaySchools
+            );
+
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                displaySchools
+            );
+
+
+        document
+            .getElementById(
+                "regionFilter"
+            )
+            .addEventListener(
+                "change",
+                displaySchools
+            );
+
+
+        document
+            .getElementById(
+                "typeFilter"
+            )
+            .addEventListener(
+                "change",
+                displaySchools
+            );
+
+
+        document
+            .getElementById(
+                "programmeFilter"
+            )
+            .addEventListener(
+                "change",
+                displaySchools
+            );
+
+
+        // =====================================
+        // START
+        // =====================================
+
+        loadSchools();
+
+    </script>
+
+</body>
+
+</html>

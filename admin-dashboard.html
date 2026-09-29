@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | EduPath Ghana</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .header {
+            background: #0b3d91;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 22px;
+        }
+
+        .logout-btn {
+            background: white;
+            color: #0b3d91;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 30px auto;
+            padding: 0 18px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .section-title {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .section-description {
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .filter {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            background: white;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .submission-card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .submission-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .submission-email {
+            color: #6b7280;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .badge {
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #e8f0ff;
+            color: #0b3d91;
+            height: fit-content;
+        }
+
+        .handled-badge {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message {
+            line-height: 1.6;
+            margin: 15px 0;
+            white-space: pre-wrap;
+        }
+
+        .submission-id {
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .handle-btn {
+            background: #16a34a;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        .view-btn {
+            background: #0b3d91;
+            color: white;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .data-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 22px;
+            background: #f9fafb;
+        }
+
+        .data-card-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .data-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .data-card p {
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
+        }
+
+        .empty {
+            background: #f9fafb;
+            padding: 30px;
+            text-align: center;
+            border-radius: 14px;
+            color: #6b7280;
+        }
+
+        .status {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .status.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        @media (max-width: 850px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .submission-header {
+                flex-direction: column;
+            }
+
+            .section {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <h1>EduPath Ghana Admin Dashboard</h1>
+
+    <button
+        class="logout-btn"
+        onclick="logoutAdmin()">
+        Logout
+    </button>
+
+</header>
+
+
+<main class="container">
+
+    <div id="statusMessage" class="status"></div>
+
+
+    <!-- ==============================
+         STATISTICS
+    =============================== -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">📋</div>
+
+            <div
+                class="stat-number"
+                id="totalSubmissions">
+                0
+            </div>
+
+            <div class="stat-label">
+                Total Submissions
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">🏫</div>
+
+            <div
+                class="stat-number"
+                id="totalSchools">
+                0
+            </div>
+
+            <div class="stat-label">
+                SHS Schools
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">🎓</div>
+
+            <div
+                class="stat-number"
+                id="totalProgrammes">
+                0
+            </div>
+
+            <div class="stat-label">
+                Programmes
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">💰</div>
+
+            <div
+                class="stat-number"
+                id="totalScholarships">
+                0
+            </div>
+
+            <div class="stat-label">
+                Scholarships
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         CONTENT MANAGEMENT
+    =============================== -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            EduPath Ghana Content
+        </h2>
+
+        <p class="section-description">
+            Current content stored in the EduPath Ghana backend.
+        </p>
+
+
+        <div class="data-grid">
+
+            <div class="data-card">
+
+                <div class="data-card-icon">
+                    🏫
+                </div>
+
+                <h3>
+                    SHS Schools
+                </h3>
+
+                <p>
+                    Manage the schools displayed in the
+                    JHS school directory.
+                </p>
+
+                <br>
+
+                <strong id="schoolCountText">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <div class="data-card">
+
+                <div class="data-card-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    University Programmes
+                </h3>
+
+                <p>
+                    Manage university courses and
+                    programme information.
+                </p>
+
+                <br>
+
+                <strong id="programmeCountText">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <div class="data-card">
+
+                <div class="data-card-icon">
+                    💰
+                </div>
+
+                <h3>
+                    Scholarships
+                </h3>
+
+                <p>
+                    View the scholarship opportunities
+                    available on EduPath Ghana.
+                </p>
+
+                <br>
+
+                <strong id="scholarshipCountText">
+                    Loading...
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         REVIEW ARENA
+    =============================== -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            Review Arena Submissions
+        </h2>
+
+        <p class="section-description">
+            View and manage feedback from students.
+        </p>
+
+
+        <select
+            id="filter"
+            class="filter">
+
+            <option value="All">
+                All Submissions
+            </option>
+
+            <option value="Question">
+                Question
+            </option>
+
+            <option value="Suggestion">
+                Suggestion
+            </option>
+
+            <option value="Concern">
+                Concern
+            </option>
+
+            <option value="Bug Report">
+                Bug Report
+            </option>
+
+        </select>
+
+
+        <div id="submissionsContainer">
+
+            <div class="loading">
+                Loading submissions...
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+let allSubmissions = [];
+
+
+/* ======================================
+   SECURITY
+====================================== */
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ======================================
+   STATUS MESSAGE
+====================================== */
+
+function showStatus(message, type) {
+
+    const box =
+        document.getElementById("statusMessage");
+
+    box.textContent = message;
+
+    box.className =
+        "status " + type;
+
+    setTimeout(() => {
+
+        box.className = "status";
+
+    }, 4000);
+
+}
+
+
+/* ======================================
+   LOAD DASHBOARD DATA
+====================================== */
+
+async function loadDashboardData() {
+
+    try {
+
+        const results =
+            await Promise.all([
+
+                fetch("/api/admin/submissions", {
+                    credentials: "include"
+                }),
+
+                fetch("/api/schools"),
+
+                fetch("/api/programmes"),
+
+                fetch("/api/scholarships")
+
+            ]);
+
+
+        /*
+         * Check admin authentication
+         */
+
+        if (results[0].status === 401) {
+
+            window.location.href =
+                "admin-login.html";
+
+            return;
+
+        }
+
+
+        const submissionsData =
+            await results[0].json();
+
+        const schoolsData =
+            await results[1].json();
+
+        const programmesData =
+            await results[2].json();
+
+        const scholarshipsData =
+            await results[3].json();
+
+
+        /*
+         * Check responses
+         */
+
+        if (!submissionsData.success) {
+
+            throw new Error(
+                submissionsData.message ||
+                "Could not load submissions."
+            );
+
+        }
+
+
+        if (!schoolsData.success) {
+
+            throw new Error(
+                schoolsData.message ||
+                "Could not load schools."
+            );
+
+        }
+
+
+        if (!programmesData.success) {
+
+            throw new Error(
+                programmesData.message ||
+                "Could not load programmes."
+            );
+
+        }
+
+
+        if (!scholarshipsData.success) {
+
+            throw new Error(
+                scholarshipsData.message ||
+                "Could not load scholarships."
+            );
+
+        }
+
+
+        /*
+         * Store submissions
+         */
+
+        allSubmissions =
+            submissionsData.submissions || [];
+
+
+        /*
+         * Update statistics
+         */
+
+        document.getElementById(
+            "totalSubmissions"
+        ).textContent =
+            submissionsData.count ??
+            allSubmissions.length;
+
+
+        document.getElementById(
+            "totalSchools"
+        ).textContent =
+            schoolsData.count ??
+            (schoolsData.schools || []).length;
+
+
+        document.getElementById(
+            "totalProgrammes"
+        ).textContent =
+            programmesData.count ??
+            (programmesData.programmes || []).length;
+
+
+        document.getElementById(
+            "totalScholarships"
+        ).textContent =
+            scholarshipsData.count ??
+            (scholarshipsData.scholarships || []).length;
+
+
+        /*
+         * Content text
+         */
+
+        document.getElementById(
+            "schoolCountText"
+        ).textContent =
+            `${schoolsData.count ?? 0} schools currently stored`;
+
+
+        document.getElementById(
+            "programmeCountText"
+        ).textContent =
+            `${programmesData.count ?? 0} programmes currently stored`;
+
+
+        document.getElementById(
+            "scholarshipCountText"
+        ).textContent =
+            `${scholarshipsData.count ?? 0} scholarships currently stored`;
+
+
+        updateStats();
+
+        displaySubmissions();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            error.message ||
+            "Could not load dashboard data.",
+            "error"
+        );
+
+        document.getElementById(
+            "submissionsContainer"
+        ).innerHTML = `
+            <div class="empty">
+                Could not load dashboard data.
+                <br><br>
+                Please refresh the page.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* ======================================
+   SUBMISSION STATISTICS
+====================================== */
+
+function updateStats() {
+
+    const total =
+        allSubmissions.length;
+
+
+    const handled =
+        allSubmissions.filter(
+            item =>
+                item.status === "Handled"
+        ).length;
+
+
+    const newCount =
+        total - handled;
+
+
+    /*
+     * The first card already displays
+     * total submissions.
+     *
+     * We don't have separate New/Handled
+     * cards anymore.
+     */
+
+}
+
+
+/* ======================================
+   DISPLAY SUBMISSIONS
+====================================== */
+
+function displaySubmissions() {
+
+    const container =
+        document.getElementById(
+            "submissionsContainer"
+        );
+
+
+    const filter =
+        document.getElementById(
+            "filter"
+        ).value;
+
+
+    let submissions =
+        allSubmissions;
+
+
+    if (filter !== "All") {
+
+        submissions =
+            allSubmissions.filter(
+                item =>
+                    item.type === filter
+            );
+
+    }
+
+
+    if (submissions.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No submissions found.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        submissions.map(
+            submission => {
+
+                const isHandled =
+                    submission.status ===
+                    "Handled";
+
+
+                return `
+
+                    <div class="submission-card">
+
+                        <div class="submission-header">
+
+                            <div>
+
+                                <div class="submission-name">
+
+                                    ${escapeHtml(
+                                        submission.name ||
+                                        "Anonymous"
+                                    )}
+
+                                </div>
+
+
+                                <div class="submission-email">
+
+                                    ${escapeHtml(
+                                        submission.email ||
+                                        "No email provided"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <span
+                                class="badge
+                                ${isHandled
+                                    ? "handled-badge"
+                                    : ""}">
+
+                                ${
+                                    isHandled
+                                    ? "Handled"
+                                    : escapeHtml(
+                                        submission.type ||
+                                        "Feedback"
+                                    )
+                                }
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="submission-id">
+
+                            Submission #
+                            ${escapeHtml(
+                                submission.id
+                            )}
+
+                        </div>
+
+
+                        <div class="message">
+
+                            ${escapeHtml(
+                                submission.message
+                            )}
+
+                        </div>
+
+
+                        <div class="actions">
+
+
+                            <button
+                                class="action-btn view-btn"
+                                onclick="viewSubmission(
+                                    ${submission.id}
+                                )">
+
+                                View
+
+                            </button>
+
+
+                            ${
+                                !isHandled
+                                ? `
+
+                                    <button
+                                        class="action-btn handle-btn"
+                                        onclick="markHandled(
+                                            ${submission.id}
+                                        )">
+
+                                        Mark Handled
+
+                                    </button>
+
+                                `
+                                : ""
+                            }
+
+
+                            <button
+                                class="action-btn delete-btn"
+                                onclick="deleteSubmission(
+                                    ${submission.id}
+                                )">
+
+                                Delete
+
+                            </button>
+
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+/* ======================================
+   FILTER
+====================================== */
+
+document
+    .getElementById("filter")
+    .addEventListener(
+        "change",
+        displaySubmissions
+    );
+
+
+/* ======================================
+   VIEW SUBMISSION
+====================================== */
+
+function viewSubmission(id) {
+
+    const submission =
+        allSubmissions.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if (!submission) {
+
+        alert(
+            "Submission not found."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+
+        "Submission #" +
+        submission.id +
+
+        "\n\n" +
+
+        "Name: " +
+        (submission.name ||
+            "Anonymous") +
+
+        "\n" +
+
+        "Email: " +
+        (submission.email ||
+            "None") +
+
+        "\n" +
+
+        "Type: " +
+        (submission.type ||
+            "Feedback") +
+
+        "\n" +
+
+        "Status: " +
+        (submission.status ||
+            "New") +
+
+        "\n\n" +
+
+        "Message:\n" +
+
+        submission.message
+
+    );
+
+}
+
+
+/* ======================================
+   MARK HANDLED
+====================================== */
+
+async function markHandled(id) {
+
+    try {
+
+        const response =
+            await fetch(
+                `/api/admin/submissions/${id}`,
+                {
+                    method: "PATCH",
+
+                    credentials:
+                        "include",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        status: "Handled"
+                    })
+                }
+            );
+
+
+        if (response.status === 401) {
+
+            window.location.href =
+                "admin-login.html";
+
+            return;
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            throw new Error(
+                data.message ||
+                "Could not update submission."
+            );
+
+        }
+
+
+        showStatus(
+            "Submission marked as handled.",
+            "success"
+        );
+
+
+        await loadDashboardData();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "Could not mark the submission as handled.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ======================================
+   DELETE SUBMISSION
+====================================== */
+
+async function deleteSubmission(id) {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this submission?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                `/api/admin/submissions/${id}`,
+                {
+                    method: "DELETE",
+                    credentials:
+                        "include"
+                }
+            );
+
+
+        if (response.status === 401) {
+
+            window.location.href =
+                "admin-login.html";
+
+            return;
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            throw new Error(
+                data.message ||
+                "Could not delete submission."
+            );
+
+        }
+
+
+        showStatus(
+            "Submission deleted successfully.",
+            "success"
+        );
+
+
+        await loadDashboardData();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showStatus(
+            "Could not delete the submission.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* ======================================
+   LOGOUT
+====================================== */
+
+async function logoutAdmin() {
+
+    try {
+
+        await fetch(
+            "/api/admin/logout",
+            {
+                method: "POST",
+                credentials: "include"
+            }
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+/* ======================================
+   START
+====================================== */
+
+loadDashboardData();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Review Arena | EduPath Ghana</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                EduPath <span>Ghana</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="explore.html">Explore</a>
+                <a href="jhs.html">JHS Students</a>
+                <a href="scholarships.html">Scholarships</a>
+                <a href="career-guidance.html">Career Guidance</a>
+                <a href="#review-arena">Review Arena</a>
+            </div>
+
+            <button class="menu-btn" id="menuBtn">☰</button>
+
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="review-hero">
+
+        <div class="review-hero-content">
+
+            <p class="section-label">REVIEW ARENA</p>
+
+            <h1>
+                Your voice helps us improve.
+            </h1>
+
+            <p>
+                Have a question, suggestion, concern, or found a problem
+                on EduPath Ghana? Let us know. Your feedback helps us make
+                the platform better for students.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- REVIEW FORM -->
+    <main id="review-arena" class="review-section">
+
+        <div class="section-heading">
+
+            <p>SHARE YOUR FEEDBACK</p>
+
+            <h2>
+                What would you like to tell us?
+            </h2>
+
+            <span>
+                You can submit your feedback anonymously if you prefer.
+            </span>
+
+        </div>
+
+
+        <form id="reviewForm" class="review-form">
+
+            <!-- NAME -->
+            <div class="review-field">
+
+                <label for="reviewName">
+                    Name <span>(optional)</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="reviewName"
+                    name="name"
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+
+            <!-- EMAIL -->
+            <div class="review-field">
+
+                <label for="reviewEmail">
+                    Email <span>(optional)</span>
+                </label>
+
+                <input
+                    type="email"
+                    id="reviewEmail"
+                    name="email"
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+
+            <!-- TYPE -->
+            <div class="review-field">
+
+                <label for="reviewType">
+                    What is your feedback about?
+                </label>
+
+                <select id="reviewType" name="type" required>
+
+                    <option value="">
+                        Select an option
+                    </option>
+
+                    <option value="Question">
+                        Question
+                    </option>
+
+                    <option value="Suggestion">
+                        Suggestion
+                    </option>
+
+                    <option value="Concern">
+                        Concern
+                    </option>
+
+                    <option value="Bug Report">
+                        Bug Report
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+            <div class="review-field">
+
+                <label for="reviewMessage">
+                    Your message
+                </label>
+
+                <textarea
+                    id="reviewMessage"
+                    name="message"
+                    rows="7"
+                    placeholder="Write your question, suggestion, concern, or bug report here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+            <button
+                type="submit"
+                id="reviewSubmitBtn"
+                class="btn primary-btn review-submit-btn"
+            >
+                Submit Feedback
+            </button>
+
+
+            <!-- STATUS MESSAGE -->
+            <div
+                id="reviewStatus"
+                class="review-status"
+                aria-live="polite"
+            ></div>
+
+        </form>
+
+    </main>
+
+
+    <!-- INFO -->
+    <section class="review-info">
+
+        <div class="review-info-card">
+
+            <div class="review-info-icon">💡</div>
+
+            <h3>Suggestions</h3>
+
+            <p>
+                Tell us about features or improvements you would like
+                to see on EduPath Ghana.
+            </p>
+
+        </div>
+
+
+        <div class="review-info-card">
+
+            <div class="review-info-icon">🐛</div>
+
+            <h3>Report a Bug</h3>
+
+            <p>
+                Found something that isn't working correctly?
+                Tell us what happened.
+            </p>
+
+        </div>
+
+
+        <div class="review-info-card">
+
+            <div class="review-info-icon">❓</div>
+
+            <h3>Ask a Question</h3>
+
+            <p>
+                If you need help understanding something on the platform,
+                you can send us your question.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <h3>EduPath Ghana</h3>
+
+                <p>
+                    Find your path. Shape your future.
+                </p>
+            </div>
+
+            <div>
+
+                <h4>Quick Links</h4>
+
+                <a href="index.html">Home</a>
+                <a href="explore.html">Explore</a>
+                <a href="jhs.html">JHS Students</a>
+                <a href="scholarships.html">Scholarships</a>
+
+            </div>
+
+        </div>
+
+        <p class="footer-bottom">
+            © 2026 EduPath Ghana. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- EXISTING WEBSITE SCRIPT -->
+    <script src="script.js"></script>
+
+
+    <!-- REVIEW ARENA SCRIPT -->
+    <script>
+
+        const reviewForm = document.getElementById("reviewForm");
+        const reviewStatus = document.getElementById("reviewStatus");
+        const reviewSubmitBtn = document.getElementById("reviewSubmitBtn");
+
+
+        reviewForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("reviewName").value.trim();
+            const email = document.getElementById("reviewEmail").value.trim();
+            const type = document.getElementById("reviewType").value;
+            const message = document.getElementById("reviewMessage").value.trim();
+
+
+            if (!type || !message) {
+
+                reviewStatus.textContent =
+                    "Please select a feedback type and write your message.";
+
+                reviewStatus.className = "review-status error";
+
+                return;
+            }
+
+
+            reviewSubmitBtn.disabled = true;
+
+            reviewSubmitBtn.textContent = "Sending...";
+
+            reviewStatus.textContent = "";
+
+
+            try {
+
+                const response = await fetch(
+                    "http://localhost:3000/api/review-arena",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            type: type,
+                            message: message
+                        })
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (!response.ok) {
+                    throw new Error(
+                        data.message || "Something went wrong."
+                    );
+                }
+
+
+                reviewStatus.textContent =
+                    "Your feedback has been submitted successfully! Thank you for helping us improve EduPath Ghana. ✓";
+
+                reviewStatus.className = "review-status success";
+
+
+                reviewForm.reset();
+
+            } catch (error) {
+
+                console.error(error);
+
+                reviewStatus.textContent =
+                    "We couldn't submit your feedback. Please make sure the EduPath Ghana server is running and try again.";
+
+                reviewStatus.className = "review-status error";
+
+            }
+
+
+            reviewSubmitBtn.disabled = false;
+
+            reviewSubmitBtn.textContent = "Submit Feedback";
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Career Guidance | EduPath Ghana</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f5f8fc;
+            color: #172033;
+
+            line-height: 1.6;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            background: white;
+
+            padding: 16px 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            box-shadow:
+                0 2px 12px rgba(0,0,0,0.08);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+
+            color: #0b5ed7;
+
+            text-decoration: none;
+
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #26344d;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #0b5ed7;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            background: #0b5ed7;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+
+            font-weight: 900;
+
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 720px;
+
+            margin: auto;
+
+            color: white;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: 92%;
+
+            max-width: 1000px;
+
+            margin: 55px auto;
+        }
+
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        .intro {
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #66748a;
+
+            max-width: 700px;
+
+            margin: auto;
+        }
+
+
+        /* =========================
+           CAREER FINDER
+        ========================= */
+
+        .finder-card {
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 16px;
+
+            border: 1px solid #e3e8ef;
+
+            box-shadow:
+                0 7px 25px rgba(0,0,0,0.07);
+        }
+
+        .finder-header {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .finder-header h2 {
+            color: #0b5ed7;
+
+            font-size: 26px;
+
+            margin-bottom: 8px;
+        }
+
+        .finder-header p {
+            color: #66748a;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #536174;
+        }
+
+        .progress-bar {
+            height: 8px;
+
+            background: #e5eaf1;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 20%;
+
+            height: 100%;
+
+            background: #0b5ed7;
+
+            transition: width 0.3s ease;
+        }
+
+
+        /* =========================
+           QUESTIONS
+        ========================= */
+
+        .question {
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        .question h3 {
+            font-size: 21px;
+
+            margin-bottom: 20px;
+
+            color: #172033;
+        }
+
+        .question-number {
+            color: #0b5ed7;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* =========================
+           OPTIONS
+        ========================= */
+
+        .options {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 14px;
+        }
+
+        .option {
+            border: 2px solid #e1e7ef;
+
+            background: white;
+
+            border-radius: 10px;
+
+            padding: 17px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            font-weight: 600;
+
+            color: #354258;
+        }
+
+        .option:hover {
+            border-color: #0b5ed7;
+
+            background: #f3f7ff;
+        }
+
+        .option.selected {
+            border-color: #0b5ed7;
+
+            background: #eaf2ff;
+
+            color: #0b5ed7;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .navigation-buttons {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 30px;
+
+            gap: 15px;
+        }
+
+        .nav-btn {
+            border: none;
+
+            padding: 12px 22px;
+
+            border-radius: 8px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+        .back-btn {
+            background: #e9edf3;
+
+            color: #344054;
+        }
+
+        .back-btn:hover {
+            background: #dfe4eb;
+        }
+
+        .next-btn {
+            background: #0b5ed7;
+
+            color: white;
+
+            margin-left: auto;
+        }
+
+        .next-btn:hover {
+            background: #084db2;
+        }
+
+
+        /* =========================
+           RESULTS
+        ========================= */
+
+        .results {
+            display: none;
+
+            margin-top: 30px;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .results-header h2 {
+            color: #0b5ed7;
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+        .results-header p {
+            color: #66748a;
+        }
+
+        .best-match {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b5ed7,
+                    #084298
+                );
+
+            color: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .best-match-label {
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 8px;
+        }
+
+        .best-match h3 {
+            font-size: 27px;
+
+            margin-bottom: 8px;
+        }
+
+        .best-match p {
+            color: white;
+
+            opacity: 0.92;
+        }
+
+        .result-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .result-card {
+            background: white;
+
+            border: 1px solid #e2e7ef;
+
+            border-radius: 12px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .result-card h3 {
+            color: #172033;
+
+            margin-bottom: 8px;
+        }
+
+        .result-card p {
+            color: #66748a;
+
+            font-size: 14px;
+        }
+
+        .result-tag {
+            display: inline-block;
+
+            background: #eaf2ff;
+
+            color: #0b5ed7;
+
+            padding: 5px 9px;
+
+            border-radius: 5px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-top: 12px;
+        }
+
+        .restart-btn {
+            display: block;
+
+            margin: 30px auto 0;
+
+            border: none;
+
+            background: #0b5ed7;
+
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 8px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           NOTE
+        ========================= */
+
+        .guidance-note {
+            margin-top: 25px;
+
+            padding: 18px;
+
+            background: #fff8e6;
+
+            border: 1px solid #f2df9b;
+
+            border-radius: 10px;
+
+            color: #665522;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111827;
+
+            color: white;
+
+            margin-top: 70px;
+
+            padding: 40px 6% 25px;
+
+            text-align: center;
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #b7c0ce;
+
+            font-size: 14px;
+        }
+
+        .copyright {
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #374151;
+
+            color: #9ca3af;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+                flex-direction: column;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .hero {
+                padding: 60px 18px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .finder-card {
+                padding: 22px 18px;
+            }
+
+            .navigation-buttons {
+                flex-direction: column;
+            }
+
+            .next-btn {
+                margin-left: 0;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            EduPath Ghana
+        </a>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="jhs.html">
+                JHS Students
+            </a>
+
+            <a href="explore.html">
+                SHS Students
+            </a>
+
+            <a href="scholarships.html">
+                Scholarships
+            </a>
+
+            <a href="career-guidance.html">
+                Career Guidance
+            </a>
+
+            <a href="review-arena.html">
+                Review Arena
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <h1>
+            🧭 Career Guidance
+        </h1>
+
+        <p>
+            Discover careers and university programmes
+            that may match your interests, strengths,
+            preferred work style and future goals.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="container">
+
+
+        <div class="intro">
+
+            <h2>
+                Find Your Career Path
+            </h2>
+
+            <p>
+                Answer a few questions and EduPath
+                will suggest career and programme
+                areas based on your answers.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             FINDER
+        ========================== -->
+
+        <section
+            class="finder-card"
+            id="finder"
+        >
+
+            <div class="finder-header">
+
+                <h2>
+                    Career Finder
+                </h2>
+
+                <p>
+                    There are no right or wrong answers.
+                    Choose the options that describe you
+                    best.
+                </p>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-container">
+
+                <div class="progress-info">
+
+                    <span id="questionLabel">
+                        Question 1 of 5
+                    </span>
+
+                    <span id="progressPercent">
+                        20%
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 QUESTION 1
+            ========================== -->
+
+            <div
+                class="question active"
+                data-question="1"
+            >
+
+                <div class="question-number">
+                    QUESTION 1
+                </div>
+
+                <h3>
+                    What level are you currently studying?
+                </h3>
+
+                <div class="options">
+
+                    <div
+                        class="option"
+                        data-value="JHS"
+                    >
+                        JHS
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="SHS"
+                    >
+                        SHS
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="University"
+                    >
+                        University
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Other"
+                    >
+                        Other
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 QUESTION 2
+            ========================== -->
+
+            <div
+                class="question"
+                data-question="2"
+            >
+
+                <div class="question-number">
+                    QUESTION 2
+                </div>
+
+                <h3>
+                    Which subjects or areas interest you most?
+                </h3>
+
+                <div class="options">
+
+                    <div
+                        class="option"
+                        data-value="Science"
+                    >
+                        🔬 Science & Mathematics
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Technology"
+                    >
+                        💻 Technology & Computing
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Business"
+                    >
+                        📊 Business & Economics
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Humanities"
+                    >
+                        📚 Humanities & Social Sciences
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Health"
+                    >
+                        🩺 Health & Life Sciences
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Creative"
+                    >
+                        🎨 Art & Creativity
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Agriculture"
+                    >
+                        🌱 Agriculture & Environment
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Engineering"
+                    >
+                        ⚙️ Engineering & Design
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 QUESTION 3
+            ========================== -->
+
+            <div
+                class="question"
+                data-question="3"
+            >
+
+                <div class="question-number">
+                    QUESTION 3
+                </div>
+
+                <h3>
+                    Which career area interests you most?
+                </h3>
+
+                <div class="options">
+
+                    <div
+                        class="option"
+                        data-value="Health"
+                    >
+                        🩺 Healthcare
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Technology"
+                    >
+                        💻 Technology
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Engineering"
+                    >
+                        🏗️ Engineering
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Business"
+                    >
+                        💼 Business
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Law"
+                    >
+                        ⚖️ Law & Government
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Science"
+                    >
+                        🔬 Science & Research
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Creative"
+                    >
+                        🎨 Creative Industries
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Agriculture"
+                    >
+                        🌱 Agriculture
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 QUESTION 4
+            ========================== -->
+
+            <div
+                class="question"
+                data-question="4"
+            >
+
+                <div class="question-number">
+                    QUESTION 4
+                </div>
+
+                <h3>
+                    What type of work do you prefer?
+                </h3>
+
+                <div class="options">
+
+                    <div
+                        class="option"
+                        data-value="People"
+                    >
+                        👥 Working with people
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Technology"
+                    >
+                        💻 Working with technology
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Problems"
+                    >
+                        🧩 Solving complex problems
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Business"
+                    >
+                        📈 Leading or managing
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Creative"
+                    >
+                        🎨 Creating and designing
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Research"
+                    >
+                        🔬 Research and investigation
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 QUESTION 5
+            ========================== -->
+
+            <div
+                class="question"
+                data-question="5"
+            >
+
+                <div class="question-number">
+                    QUESTION 5
+                </div>
+
+                <h3>
+                    What is most important to you in a future career?
+                </h3>
+
+                <div class="options">
+
+                    <div
+                        class="option"
+                        data-value="Impact"
+                    >
+                        ❤️ Helping people
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Innovation"
+                    >
+                        💡 Innovation and technology
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Leadership"
+                    >
+                        👔 Leadership and business
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Stability"
+                    >
+                        🛡️ Stability and professional growth
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Creativity"
+                    >
+                        🎨 Creativity and expression
+                    </div>
+
+                    <div
+                        class="option"
+                        data-value="Discovery"
+                    >
+                        🔎 Discovery and knowledge
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION BUTTONS -->
+
+            <div class="navigation-buttons">
+
+                <button
+                    class="nav-btn back-btn"
+                    id="backBtn"
+                    style="display:none;"
+                >
+                    ← Back
+                </button>
+
+                <button
+                    class="nav-btn next-btn"
+                    id="nextBtn"
+                >
+                    Next →
+                </button>
+
+            </div>
+
+
+            <!-- RESULTS -->
+
+            <div
+                class="results"
+                id="results"
+            >
+
+                <div class="results-header">
+
+                    <h2>
+                        Your Career Matches
+                    </h2>
+
+                    <p>
+                        Based on the answers you provided,
+                        these career areas and programmes
+                        may be worth exploring.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="best-match"
+                    id="bestMatch"
+                >
+
+                    <div class="best-match-label">
+                        YOUR TOP MATCH
+                    </div>
+
+                    <h3 id="bestMatchName">
+                        —
+                    </h3>
+
+                    <p id="bestMatchDescription">
+                        —
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="result-grid"
+                    id="resultGrid"
+                ></div>
+
+
+                <div class="guidance-note">
+
+                    <strong>
+                        Important:
+                    </strong>
+
+                    These results are suggestions based
+                    on your answers, not a final decision
+                    about your future. Explore the suggested
+                    programmes and careers further before
+                    making an educational choice.
+
+                </div>
+
+
+                <button
+                    class="restart-btn"
+                    id="restartBtn"
+                >
+                    🔄 Take Career Finder Again
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <h3>
+            EduPath Ghana
+        </h3>
+
+        <p>
+            Find your path. Shape your future.
+        </p>
+
+        <div class="copyright">
+
+            © 2026 EduPath Ghana.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        const questions =
+            document.querySelectorAll(".question");
+
+        const nextBtn =
+            document.getElementById("nextBtn");
+
+        const backBtn =
+            document.getElementById("backBtn");
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+        const questionLabel =
+            document.getElementById("questionLabel");
+
+        const progressPercent =
+            document.getElementById("progressPercent");
+
+        const results =
+            document.getElementById("results");
+
+        const bestMatchName =
+            document.getElementById("bestMatchName");
+
+        const bestMatchDescription =
+            document.getElementById(
+                "bestMatchDescription"
+            );
+
+        const resultGrid =
+            document.getElementById("resultGrid");
+
+        const restartBtn =
+            document.getElementById("restartBtn");
+
+
+        let currentQuestion = 0;
+
+        let answers = {};
+
+
+        /* =========================
+           CAREER DATA
+        ========================= */
+
+        const careers = [
+
+            {
+                name: "Computer Science",
+                category: "Technology",
+                description:
+                    "Explore computing, software, algorithms, programming and digital technology.",
+                keywords: [
+                    "Technology",
+                    "Problems",
+                    "Innovation"
+                ]
+            },
+
+            {
+                name: "Information Systems",
+                category: "Technology",
+                description:
+                    "Explore how technology and information systems support organisations and businesses.",
+                keywords: [
+                    "Technology",
+                    "Business",
+                    "Problems"
+                ]
+            },
+
+            {
+                name: "Information Technology",
+                category: "Technology",
+                description:
+                    "Explore computer systems, networks, software and IT infrastructure.",
+                keywords: [
+                    "Technology",
+                    "Problems",
+                    "Innovation"
+                ]
+            },
+
+            {
+                name: "Cyber Security",
+                category: "Technology",
+                description:
+                    "Learn about protecting computers, networks, systems and information.",
+                keywords: [
+                    "Technology",
+                    "Problems",
+                    "Innovation"
+                ]
+            },
+
+            {
+                name: "Medicine",
+                category: "Health",
+                description:
+                    "Explore human health, diseases, diagnosis and treatment.",
+                keywords: [
+                    "Health",
+                    "People",
+                    "Impact"
+                ]
+            },
+
+            {
+                name: "Nursing",
+                category: "Health",
+                description:
+                    "Explore professional patient care, health support and clinical practice.",
+                keywords: [
+                    "Health",
+                    "People",
+                    "Impact"
+                ]
+            },
+
+            {
+                name: "Public Health",
+                category: "Health",
+                description:
+                    "Explore disease prevention, health promotion and community wellbeing.",
+                keywords: [
+                    "Health",
+                    "People",
+                    "Impact"
+                ]
+            },
+
+            {
+                name: "Pharmacy",
+                category: "Health",
+                description:
+                    "Explore medicines, drug development, preparation and safe use.",
+                keywords: [
+                    "Health",
+                    "Science",
+                    "Impact"
+                ]
+            },
+
+            {
+                name: "Civil Engineering",
+                category: "Engineering",
+                description:
+                    "Explore buildings, roads, bridges and other infrastructure.",
+                keywords: [
+                    "Engineering",
+                    "Problems",
+                    "Innovation"
+                ]
+            },
+
+            {
+                name: "Electrical Engineering",
+                category: "Engineering",
+                description:
+                    "Explore electricity, electronics and electrical systems.",
+                keywords: [
+                    "Engineering",
+                    "Technology",
+                    "Problems"
+                ]
+            },
+
+            {
+                name: "Mechanical Engineering",
+                category: "Engineering",
+                description:
+                    "Explore machines, mechanics, design and manufacturing systems.",
+                keywords: [
+                    "Engineering",
+                    "Problems",
+                    "Innovation"
+                ]
+            },
+
+            {
+                name: "Chemical Engineering",
+                category: "Engineering",
+                description:
+                    "Apply chemistry, mathematics and engineering to industrial processes.",
+                keywords: [
+                    "Engineering",
+                    "Science",
+                    "Problems"
+                ]
+            },
+
+            {
+                name: "Business Administration",
+                category: "Business",
+                description:
+                    "Explore management, finance, marketing and business operations.",
+                keywords: [
+                    "Business",
+                    "Leadership",
+                    "People"
+                ]
+            },
+
+            {
+                name: "Accounting",
+                category: "Business",
+                description:
+                    "Explore financial records, reporting, auditing and financial management.",
+                keywords: [
+                    "Business",
+                    "Problems",
+                    "Stability"
+                ]
+            },
+
+            {
+                name: "Economics",
+                category: "Business",
+                description:
+                    "Explore how individuals, businesses and governments use resources.",
+                keywords: [
+                    "Business",
+                    "Problems",
+                    "Discovery"
+                ]
+            },
+
+            {
+                name: "Law",
+                category: "Law",
+                description:
+                    "Explore legal systems, justice, rights and responsibilities.",
+                keywords: [
+                    "Law",
+                    "People",
+                    "Leadership"
+                ]
+            },
+
+            {
+                name: "Political Science",
+                category: "Law",
+                description:
+                    "Explore government, politics, public policy and institutions.",
+                keywords: [
+                    "Law",
+                    "People",
+                    "Leadership"
+                ]
+            },
+
+            {
+                name: "Biochemistry",
+                category: "Science",
+                description:
+                    "Explore the chemical processes occurring in living organisms.",
+                keywords: [
+                    "Science",
+                    "Research",
+                    "Discovery"
+                ]
+            },
+
+            {
+                name: "Agricultural Science",
+                category: "Agriculture",
+                description:
+                    "Explore crops, animals, agriculture and modern food production.",
+                keywords: [
+                    "Agriculture",
+                    "Science",
+                    "Discovery"
+                ]
+            },
+
+            {
+                name: "Architecture",
+                category: "Engineering",
+                description:
+                    "Explore the design, planning and development of buildings and spaces.",
+                keywords: [
+                    "Engineering",
+                    "Creative",
+                    "Innovation"
+                ]
+            },
+
+            {
+                name: "Communication Studies",
+                category: "Creative",
+                description:
+                    "Explore media, communication, journalism and public relations.",
+                keywords: [
+                    "Creative",
+                    "People",
+                    "Impact"
+                ]
+            },
+
+            {
+                name: "Psychology",
+                category: "Humanities",
+                description:
+                    "Explore human behaviour, thoughts, emotions and mental processes.",
+                keywords: [
+                    "Humanities",
+                    "People",
+                    "Research"
+                ]
+            }
+
+        ];
+
+
+        /* =========================
+           SELECT OPTIONS
+        ========================= */
+
+        document
+            .querySelectorAll(".option")
+            .forEach(option => {
+
+                option.addEventListener(
+                    "click",
+                    function() {
+
+                        const parent =
+                            this.closest(".question");
+
+                        parent
+                            .querySelectorAll(".option")
+                            .forEach(item => {
+
+                                item.classList.remove(
+                                    "selected"
+                                );
+
+                            });
+
+                        this.classList.add(
+                            "selected"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* =========================
+           SHOW QUESTION
+        ========================= */
+
+        function showQuestion(index) {
+
+            questions.forEach(
+                (question, i) => {
+
+                    question.classList.toggle(
+                        "active",
+                        i === index
+                    );
+
+                }
+            );
+
+
+            const percent =
+                ((index + 1) /
+                    questions.length) * 100;
+
+
+            progressFill.style.width =
+                percent + "%";
+
+
+            questionLabel.textContent =
+                `Question ${index + 1} of ${questions.length}`;
+
+
+            progressPercent.textContent =
+                Math.round(percent) + "%";
+
+
+            backBtn.style.display =
+                index === 0
+                    ? "none"
+                    : "block";
+
+
+            nextBtn.textContent =
+                index === questions.length - 1
+                    ? "See My Results →"
+                    : "Next →";
+
+        }
+
+
+        /* =========================
+           GET ANSWER
+        ========================= */
+
+        function getCurrentAnswer() {
+
+            const current =
+                questions[currentQuestion];
+
+            const selected =
+                current.querySelector(
+                    ".option.selected"
+                );
+
+            if (!selected) {
+
+                return null;
+
+            }
+
+            return selected.dataset.value;
+
+        }
+
+
+        /* =========================
+           NEXT
+        ========================= */
+
+        nextBtn.addEventListener(
+            "click",
+            function() {
+
+                const answer =
+                    getCurrentAnswer();
+
+
+                if (!answer) {
+
+                    alert(
+                        "Please select an answer before continuing."
+                    );
+
+                    return;
+
+                }
+
+
+                answers[
+                    currentQuestion
+                ] = answer;
+
+
+                if (
+                    currentQuestion <
+                    questions.length - 1
+                ) {
+
+                    currentQuestion++;
+
+                    showQuestion(
+                        currentQuestion
+                    );
+
+                } else {
+
+                    showResults();
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           BACK
+        ========================= */
+
+        backBtn.addEventListener(
+            "click",
+            function() {
+
+                if (currentQuestion > 0) {
+
+                    currentQuestion--;
+
+                    showQuestion(
+                        currentQuestion
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           FIND RESULTS
+        ========================= */
+
+        function showResults() {
+
+            document
+                .querySelector(".progress-container")
+                .style.display = "none";
+
+
+            document
+                .querySelector(".finder-header")
+                .style.display = "none";
+
+
+            questions.forEach(
+                question => {
+
+                    question.style.display =
+                        "none";
+
+                }
+            );
+
+
+            document
+                .querySelector(
+                    ".navigation-buttons"
+                )
+                .style.display = "none";
+
+
+            results.classList.add(
+                "active"
+            );
+
+
+            const scores =
+                careers.map(career => {
+
+                    let score = 0;
+
+
+                    /*
+                     * Interest
+                     */
+
+                    if (
+                        career.keywords.includes(
+                            answers[1]
+                        )
+                    ) {
+
+                        score += 4;
+
+                    }
+
+
+                    /*
+                     * Career area
+                     */
+
+                    if (
+                        career.category ===
+                        answers[2]
+                    ) {
+
+                        score += 5;
+
+                    }
+
+
+                    /*
+                     * Work preference
+                     */
+
+                    if (
+                        career.keywords.includes(
+                            answers[3]
+                        )
+                    ) {
+
+                        score += 3;
+
+                    }
+
+
+                    /*
+                     * Career goal
+                     */
+
+                    if (
+                        career.keywords.includes(
+                            answers[4]
+                        )
+                    ) {
+
+                        score += 3;
+
+                    }
+
+
+                    return {
+                        career,
+                        score
+                    };
+
+                });
+
+
+            scores.sort(
+                (a, b) =>
+                    b.score - a.score
+            );
+
+
+            const topResults =
+                scores.slice(0, 6);
+
+
+            const top =
+                topResults[0];
+
+
+            bestMatchName.textContent =
+                top.career.name;
+
+
+            bestMatchDescription.textContent =
+                top.career.description;
+
+
+            resultGrid.innerHTML = "";
+
+
+            topResults
+                .slice(1)
+                .forEach(item => {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+                    card.className =
+                        "result-card";
+
+
+                    card.innerHTML = `
+
+                        <h3>
+                            ${item.career.name}
+                        </h3>
+
+                        <p>
+                            ${item.career.description}
+                        </p>
+
+                        <span class="result-tag">
+                            ${item.career.category}
+                        </span>
+
+                    `;
+
+
+                    resultGrid.appendChild(
+                        card
+                    );
+
+                });
+
+        }
+
+
+        /* =========================
+           RESTART
+        ========================= */
+
+        restartBtn.addEventListener(
+            "click",
+            function() {
+
+                currentQuestion = 0;
+
+                answers = {};
+
+
+                questions.forEach(
+                    question => {
+
+                        question.style.display =
+                            "";
+
+                        question
+                            .querySelectorAll(
+                                ".option"
+                            )
+                            .forEach(
+                                option => {
+
+                                    option.classList.remove(
+                                        "selected"
+                                    );
+
+                                }
+                            );
+
+                    }
+                );
+
+
+                results.classList.remove(
+                    "active"
+                );
+
+
+                document
+                    .querySelector(
+                        ".finder-header"
+                    )
+                    .style.display = "";
+
+
+                document
+                    .querySelector(
+                        ".progress-container"
+                    )
+                    .style.display = "";
+
+
+                document
+                    .querySelector(
+                        ".navigation-buttons"
+                    )
+                    .style.display = "";
+
+
+                showQuestion(0);
+
+            }
+        );
+
+
+        /* INITIAL QUESTION */
+
+        showQuestion(0);
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+{
+  "submissions": [
+    {
+      "id": 1,
+      "name": "Test Student",
+      "email": "test@example.com",
+      "type": "Suggestion",
+      "message": "Backend test submission"
+    }
+  ]
+}

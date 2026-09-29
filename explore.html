@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Explore Programmes - EduPath Ghana</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .save-favourite-btn {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 11px 14px;
+            border: 1px solid #0b5ed7;
+            background: white;
+            color: #0b5ed7;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .save-favourite-btn:hover {
+            background: #0b5ed7;
+            color: white;
+        }
+
+        .save-favourite-btn.saved {
+            background: #0b5ed7;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================= -->
+    <!-- NAVIGATION -->
+    <!-- ============================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                EduPath <span>Ghana</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="index.html">Home</a>
+
+                <a href="explore.html">Explore</a>
+
+                <a href="jhs.html">JHS students</a>
+
+                <a href="scholarships.html">Scholarships</a>
+
+                <a href="#about">About</a>
+
+            </div>
+
+            <button class="menu-btn" id="menuBtn">
+                ☰
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- HERO -->
+    <!-- ============================= -->
+
+    <section class="explore-hero">
+
+        <div class="hero-content">
+
+            <p>EDUPATH GHANA</p>
+
+            <h1>
+                EXPLORE YOUR FUTURE
+            </h1>
+
+            <span>
+                Discover university programmes and find
+                a course that matches your interests,
+                strengths and career goals.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- PROGRAMMES -->
+    <!-- ============================= -->
+
+    <section class="explore-section">
+
+        <div class="section-heading">
+
+            <p>UNIVERSITY PROGRAMMES</p>
+
+            <h2>
+                Find a programme
+            </h2>
+
+            <span>
+                Search and explore programmes available
+                to students in Ghana.
+            </span>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- SEARCH -->
+        <!-- ============================= -->
+
+        <div class="programme-search">
+
+            <input
+                type="text"
+                id="programmeSearch"
+                placeholder="Search for a programme..."
+            >
+
+            <button id="programmeSearchBtn">
+                Search
+            </button>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- FILTERS -->
+        <!-- ============================= -->
+
+        <div class="programme-filters">
+
+            <button
+                class="filter-btn active"
+                data-category="all">
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Science">
+                Science
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Health">
+                Health
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Engineering">
+                Engineering
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Business">
+                Business
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Humanities">
+                Humanities
+            </button>
+
+            <button
+                class="filter-btn"
+                data-category="Technology">
+                Technology
+            </button>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- PROGRAMME GRID -->
+        <!-- ============================= -->
+
+        <div
+            class="programme-grid"
+            id="programmeGrid">
+
+            <p id="programmeLoading">
+                Loading programmes...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
+    <footer id="about">
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>
+                    EduPath <span>Ghana</span>
+                </h3>
+
+                <p>
+                    Helping students find their path
+                    and shape their future.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Quick Links
+                </h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="explore.html">
+                    Explore
+                </a>
+
+                <a href="jhs.html">
+                    JHS Students
+                </a>
+
+                <a href="scholarships.html">
+                    Scholarships
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <p class="footer-bottom">
+            © 2026 EduPath Ghana. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ============================= -->
+    <!-- WEBSITE JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script src="script.js"></script>
+
+    <!-- ============================= -->
+    <!-- FAVOURITES SYSTEM -->
+    <!-- ============================= -->
+
+    <script src="favourites.js"></script>
+
+
+    <!-- ============================= -->
+    <!-- PROGRAMME API JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script>
+
+        (function () {
+
+            const apiGrid =
+                document.getElementById(
+                    "programmeGrid"
+                );
+
+
+            const apiSearch =
+                document.getElementById(
+                    "programmeSearch"
+                );
+
+
+            const apiSearchButton =
+                document.getElementById(
+                    "programmeSearchBtn"
+                );
+
+
+            const apiFilters =
+                document.querySelectorAll(
+                    ".filter-btn"
+                );
+
+
+            let apiProgrammes = [];
+
+            let apiCategory = "all";
+
+
+            // ========================================
+            // LOAD PROGRAMMES
+            // ========================================
+
+            async function loadProgrammesFromAPI() {
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/api/programmes"
+                        );
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            "API request failed"
+                        );
+
+                    }
+
+
+                    const data =
+                        await response.json();
+
+
+                    apiProgrammes =
+                        Array.isArray(
+                            data.programmes
+                        )
+                            ? data.programmes
+                            : [];
+
+
+                    displayProgrammes(
+                        apiProgrammes
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Programme API error:",
+                        error
+                    );
+
+
+                    apiGrid.innerHTML = `
+
+                        <p>
+
+                            Unable to load programmes.
+                            Please make sure the
+                            EduPath Ghana server
+                            is running.
+
+                        </p>
+
+                    `;
+
+                }
+
+            }
+
+
+            // ========================================
+            // DISPLAY PROGRAMMES
+            // ========================================
+
+            function displayProgrammes(
+                programmeList
+            ) {
+
+                apiGrid.innerHTML = "";
+
+
+                if (
+                    programmeList.length === 0
+                ) {
+
+                    apiGrid.innerHTML = `
+
+                        <p>
+                            No programmes found.
+                        </p>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                programmeList.forEach(
+                    programme => {
+
+                        const card =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        card.className =
+                            "programme-card";
+
+
+                        card.dataset.category =
+                            programme.category || "";
+
+
+                        card.dataset.name =
+                            programme.name || "";
+
+
+                        const icon =
+                            programme.icon ||
+                            "🎓";
+
+
+                        const name =
+                            programme.name ||
+                            "";
+
+
+                        const description =
+                            programme.description ||
+                            "";
+
+
+                        const link =
+                            programme.link ||
+                            "programme.html";
+
+
+                        card.innerHTML = `
+
+                            <div class="programme-icon">
+
+                                ${escapeHTML(icon)}
+
+                            </div>
+
+
+                            <h3>
+
+                                ${escapeHTML(name)}
+
+                            </h3>
+
+
+                            <p>
+
+                                ${escapeHTML(
+                                    description
+                                )}
+
+                            </p>
+
+
+                            <a href="${escapeHTML(link)}">
+
+                                Explore →
+
+                            </a>
+
+
+                            <button
+                                class="save-favourite-btn"
+                                data-programme-id="${escapeHTML(
+                                    programme.id
+                                )}"
+                                onclick="toggleProgrammeFavourite(
+                                    '${escapeHTML(
+                                        programme.id
+                                    )}',
+                                    this
+                                )"
+                            >
+
+                                ♡ Save Programme
+
+                            </button>
+
+                        `;
+
+
+                        apiGrid.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+
+                updateProgrammeFavouriteButtons();
+
+            }
+
+
+            // ========================================
+            // FILTER PROGRAMMES
+            // ========================================
+
+            function filterProgrammes() {
+
+                const searchText =
+                    apiSearch.value
+                        .toLowerCase()
+                        .trim();
+
+
+                const filtered =
+                    apiProgrammes.filter(
+                        programme => {
+
+                            const categoryMatch =
+                                apiCategory === "all" ||
+                                programme.category ===
+                                apiCategory;
+
+
+                            const searchableText =
+                                (
+                                    programme.name ||
+                                    ""
+                                ) +
+                                " " +
+                                (
+                                    programme.description ||
+                                    ""
+                                ) +
+                                " " +
+                                (
+                                    programme.category ||
+                                    ""
+                                );
+
+
+                            const searchMatch =
+                                searchableText
+                                    .toLowerCase()
+                                    .includes(
+                                        searchText
+                                    );
+
+
+                            return (
+                                categoryMatch &&
+                                searchMatch
+                            );
+
+                        }
+                    );
+
+
+                displayProgrammes(
+                    filtered
+                );
+
+            }
+
+
+            // ========================================
+            // SEARCH BUTTON
+            // ========================================
+
+            if (apiSearchButton) {
+
+                apiSearchButton.addEventListener(
+                    "click",
+                    filterProgrammes
+                );
+
+            }
+
+
+            // ========================================
+            // SEARCH WHILE TYPING
+            // ========================================
+
+            if (apiSearch) {
+
+                apiSearch.addEventListener(
+                    "input",
+                    filterProgrammes
+                );
+
+            }
+
+
+            // ========================================
+            // CATEGORY FILTERS
+            // ========================================
+
+            apiFilters.forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            apiFilters.forEach(
+                                filter => {
+
+                                    filter.classList.remove(
+                                        "active"
+                                    );
+
+                                }
+                            );
+
+
+                            this.classList.add(
+                                "active"
+                            );
+
+
+                            apiCategory =
+                                this.dataset.category;
+
+
+                            filterProgrammes();
+
+                        }
+                    );
+
+                }
+            );
+
+
+            // ========================================
+            // START API
+            // ========================================
+
+            loadProgrammesFromAPI();
+
+
+        })();
+
+
+        // ========================================
+        // TOGGLE PROGRAMME FAVOURITE
+        // ========================================
+
+        async function toggleProgrammeFavourite(
+            programmeId,
+            button
+        ) {
+
+            if (
+                !window.EduPathFavourites ||
+                !window.EduPathFavourites.available
+            ) {
+
+                window.location.href =
+                    "student-login.html";
+
+                return;
+
+            }
+
+
+            try {
+
+                const saved =
+                    await window.EduPathFavourites.check(
+                        "programmes",
+                        programmeId
+                    );
+
+
+                if (saved) {
+
+                    await window.EduPathFavourites.remove(
+                        "programmes",
+                        programmeId
+                    );
+
+
+                    button.textContent =
+                        "♡ Save Programme";
+
+
+                    button.classList.remove(
+                        "saved"
+                    );
+
+
+                } else {
+
+                    await window.EduPathFavourites.save(
+                        "programmes",
+                        programmeId
+                    );
+
+
+                    button.textContent =
+                        "♥ Saved";
+
+
+                    button.classList.add(
+                        "saved"
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Programme favourite error:",
+                    error
+                );
+
+
+                alert(
+                    "Could not update your saved programme."
+                );
+
+            }
+
+        }
+
+
+        // ========================================
+        // UPDATE SAVED PROGRAMME BUTTONS
+        // ========================================
+
+        async function updateProgrammeFavouriteButtons() {
+
+            if (
+                !window.EduPathFavourites ||
+                !window.EduPathFavourites.available
+            ) {
+
+                return;
+
+            }
+
+
+            const buttons =
+                document.querySelectorAll(
+                    ".save-favourite-btn"
+                );
+
+
+            for (
+                const button
+                of buttons
+            ) {
+
+                const programmeId =
+                    button.dataset.programmeId;
+
+
+                const saved =
+                    await window.EduPathFavourites.check(
+                        "programmes",
+                        programmeId
+                    );
+
+
+                if (saved) {
+
+                    button.textContent =
+                        "♥ Saved";
+
+
+                    button.classList.add(
+                        "saved"
+                    );
+
+                }
+
+            }
+
+        }
+
+
+        // ========================================
+        // ESCAPE HTML
+        // ========================================
+
+        function escapeHTML(value) {
+
+            return String(
+                value || ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

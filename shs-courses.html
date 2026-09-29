@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SHS Courses | EduPath Ghana</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f5f8fc;
+            color: #172033;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            background: white;
+
+            padding: 16px 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            box-shadow:
+                0 2px 12px rgba(0,0,0,0.08);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #0b5ed7;
+
+            font-size: 24px;
+            font-weight: 900;
+
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #26344d;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #0b5ed7;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            background: #0b5ed7;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 75px 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+
+            font-weight: 900;
+
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 700px;
+
+            margin: auto;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            color: white;
+        }
+
+
+        /* MAIN */
+
+        .container {
+            width: 92%;
+
+            max-width: 1100px;
+
+            margin: 55px auto;
+        }
+
+        .intro {
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #66748a;
+
+            max-width: 700px;
+
+            margin: auto;
+        }
+
+
+        /* COURSE GRID */
+
+        .course-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 24px;
+        }
+
+
+        /* COURSE CARD */
+
+        .course-card {
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 30px 24px;
+
+            border:
+                1px solid #e3e8ef;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.07);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.12);
+        }
+
+
+        /* ICON */
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+
+            background: #eaf2ff;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .course-card h3 {
+            font-size: 21px;
+
+            margin-bottom: 10px;
+
+            color: #172033;
+        }
+
+        .course-card p {
+            color: #66748a;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 22px;
+
+            flex-grow: 1;
+        }
+
+
+        /* BUTTON */
+
+        .course-btn {
+            display: block;
+
+            text-align: center;
+
+            background: #0b5ed7;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 11px 16px;
+
+            border-radius: 7px;
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        .course-btn:hover {
+            background: #084db2;
+        }
+
+
+        /* BACK BUTTON */
+
+        .back-section {
+            text-align: center;
+
+            margin-top: 45px;
+        }
+
+        .back-btn {
+            display: inline-block;
+
+            color: #0b5ed7;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            background: #111827;
+
+            color: white;
+
+            margin-top: 70px;
+
+            padding: 40px 6% 25px;
+
+            text-align: center;
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #b7c0ce;
+
+            font-size: 14px;
+        }
+
+        .copyright {
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #374151;
+
+            color: #9ca3af;
+
+            font-size: 13px;
+        }
+
+
+        /* TABLET */
+
+        @media (max-width: 900px) {
+
+            nav {
+                flex-direction: column;
+            }
+
+            .course-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .hero {
+                padding: 60px 18px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            EduPath Ghana
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="jhs.html">
+                JHS Students
+            </a>
+
+            <a href="explore.html">
+                SHS Students
+            </a>
+
+            <a href="scholarships.html">
+                Scholarships
+            </a>
+
+            <a href="career-guidance.html">
+                Career Guidance
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            SHS Courses
+        </h1>
+
+        <p>
+            Explore the major Senior High School
+            courses available to students and learn
+            more about what each course involves.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="container">
+
+
+        <div class="intro">
+
+            <h2>
+                Choose Your SHS Course
+            </h2>
+
+            <p>
+                Select a course below to learn more
+                about the subjects, possible
+                opportunities and future pathways
+                associated with it.
+            </p>
+
+        </div>
+
+
+        <!-- COURSE CARDS -->
+
+        <div class="course-grid">
+
+
+            <!-- SCIENCE -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    🔬
+                </div>
+
+                <h3>
+                    Science
+                </h3>
+
+                <p>
+                    Explore the Science course and
+                    discover subjects, learning areas
+                    and possible future opportunities.
+                </p>
+
+                <a
+                    href="science.html"
+                    class="course-btn"
+                >
+                    Explore Science →
+                </a>
+
+            </div>
+
+
+            <!-- GENERAL ARTS -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    📚
+                </div>
+
+                <h3>
+                    General Arts
+                </h3>
+
+                <p>
+                    Explore humanities, social sciences,
+                    languages and other areas covered
+                    under General Arts.
+                </p>
+
+                <a
+                    href="general-arts.html"
+                    class="course-btn"
+                >
+                    Explore General Arts →
+                </a>
+
+            </div>
+
+
+            <!-- BUSINESS -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    💼
+                </div>
+
+                <h3>
+                    Business
+                </h3>
+
+                <p>
+                    Learn about business-related studies,
+                    accounting, economics and other
+                    areas connected to commerce.
+                </p>
+
+                <a
+                    href="business.html"
+                    class="course-btn"
+                >
+                    Explore Business →
+                </a>
+
+            </div>
+
+
+            <!-- HOME ECONOMICS -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    🏠
+                </div>
+
+                <h3>
+                    Home Economics
+                </h3>
+
+                <p>
+                    Explore food, nutrition, clothing,
+                    management and practical skills
+                    related to everyday life.
+                </p>
+
+                <a
+                    href="home-economics.html"
+                    class="course-btn"
+                >
+                    Explore Home Economics →
+                </a>
+
+            </div>
+
+
+            <!-- VISUAL ARTS -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    🎨
+                </div>
+
+                <h3>
+                    Visual Arts
+                </h3>
+
+                <p>
+                    Discover creative subjects involving
+                    art, design, crafts and visual
+                    communication.
+                </p>
+
+                <a
+                    href="visual-arts.html"
+                    class="course-btn"
+                >
+                    Explore Visual Arts →
+                </a>
+
+            </div>
+
+
+            <!-- AGRICULTURAL SCIENCE -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Agricultural Science
+                </h3>
+
+                <p>
+                    Explore crop production, animal
+                    production, agricultural practices
+                    and modern food production.
+                </p>
+
+                <a
+                    href="agricultural-science.html"
+                    class="course-btn"
+                >
+                    Explore Agricultural Science →
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <div class="back-section">
+
+            <a
+                href="index.html"
+                class="back-btn"
+            >
+                ← Back to EduPath Ghana
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            EduPath Ghana
+        </h3>
+
+        <p>
+            Find your path. Shape your future.
+        </p>
+
+        <div class="copyright">
+
+            © 2026 EduPath Ghana.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

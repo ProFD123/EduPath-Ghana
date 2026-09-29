@@ -1,0 +1,92 @@
+{
+  "scholarships": [
+    {
+      "id": 1,
+      "name": "Joint Algeria/Ghana Government Scholarship Awards 2026/2027",
+      "country": "Algeria",
+      "level": "Undergraduate",
+      "funding": "Fully Funded",
+      "deadline": "September 15, 2026",
+      "description": "Scholarship awards for eligible Ghanaian students for undergraduate studies in Algeria.",
+      "eligibility": "For eligible Ghanaian citizens resident in Ghana who meet the published academic and age requirements.",
+      "officialLink": "https://scholarships.gov.gh/opportunities/the-joint-algeriaghana-government-scholarship-awards-for-the-20262027-academic-year-tenable-in-algeria"
+    },
+    {
+      "id": 2,
+      "name": "Joint Algeria/Ghana Government Scholarship - Vocational & Technical",
+      "country": "Algeria",
+      "level": "Technical",
+      "funding": "Fully Funded",
+      "deadline": "September 15, 2026",
+      "description": "An Algeria/Ghana government scholarship pathway covering eligible vocational and technical study opportunities.",
+      "eligibility": "Applicants must meet the requirements stated in the official scholarship notice.",
+      "officialLink": "https://scholarships.gov.gh/opportunities/the-joint-algeriaghana-government-scholarship-awards-for-the-20262027-academic-year-tenable-in-algeria"
+    },
+    {
+      "id": 3,
+      "name": "Scholarship Opportunity in the Republic of Serbia",
+      "country": "Other",
+      "level": "Undergraduate",
+      "funding": "Fully Funded",
+      "deadline": "Check official announcement",
+      "description": "The Ghana Scholarships Authority announced the World in Serbia scholarship programme for eligible Ghanaian applicants.",
+      "eligibility": "Eligibility and application requirements must be confirmed in the official announcement.",
+      "officialLink": "https://scholarships.gov.gh/opportunities"
+    },
+    {
+      "id": 4,
+      "name": "Presidential West African Scholarship Initiative (PWASI) 2026",
+      "country": "Ghana",
+      "level": "Undergraduate",
+      "funding": "Fully Funded",
+      "deadline": "Check official announcement",
+      "description": "A scholarship initiative supporting eligible ECOWAS students pursuing full-time undergraduate or postgraduate studies in public tertiary institutions in Ghana.",
+      "eligibility": "The programme is primarily for eligible ECOWAS citizens other than Ghana. Check the official notice for full requirements.",
+      "officialLink": "https://scholarships.gov.gh/opportunities/presidential-west-african-scholarship-initiative-pwasi-2026"
+    },
+    {
+      "id": 5,
+      "name": "Local Tertiary Scholarship Applications 2026/2027",
+      "country": "Ghana",
+      "level": "Undergraduate",
+      "funding": "Tuition Support",
+      "deadline": "Application period ended May 15, 2026",
+      "description": "Ghana Scholarships Authority support for eligible students enrolled in accredited tertiary institutions in Ghana.",
+      "eligibility": "Eligibility depends on the published requirements of the Ghana Scholarships Authority.",
+      "officialLink": "https://scholarships.gov.gh/opportunities/local-tertiary-scholarship-applications-for-20262027-academic-year"
+    },
+    {
+      "id": 6,
+      "name": "Australian Awards Scholarship 2027",
+      "country": "Australia",
+      "level": "Postgraduate",
+      "funding": "Fully Funded",
+      "deadline": "Application period ended April 30, 2026",
+      "description": "Australia Awards scholarship opportunity for eligible applicants from participating African countries, including Ghana.",
+      "eligibility": "Applicants must satisfy the Australia Awards Africa and Ghana-specific eligibility requirements.",
+      "officialLink": "https://www.dfat.gov.au/people-to-people/australia-awards"
+    },
+    {
+      "id": 7,
+      "name": "Chinese Government Scholarship Awards to Ghanaian Students",
+      "country": "China",
+      "level": "Undergraduate",
+      "funding": "Fully Funded",
+      "deadline": "Check official announcement",
+      "description": "Chinese Government Scholarship opportunities announced through the Ghana Scholarships Authority for eligible Ghanaian students.",
+      "eligibility": "Applicants must meet the requirements specified in the official scholarship announcement.",
+      "officialLink": "https://scholarships.gov.gh/opportunities"
+    },
+    {
+      "id": 8,
+      "name": "London International Youth Science Forum Sponsorship",
+      "country": "Other",
+      "level": "Undergraduate",
+      "funding": "Partially Funded",
+      "deadline": "Check official announcement",
+      "description": "A science-focused international opportunity announced by the Ghana Scholarships Authority for students interested in STEM.",
+      "eligibility": "Eligibility and sponsorship conditions should be confirmed through the official announcement.",
+      "officialLink": "https://scholarships.gov.gh/opportunities"
+    }
+  ]
+}

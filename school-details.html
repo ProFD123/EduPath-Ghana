@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>School Details | EduPath Ghana</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        .school-details-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .school-header {
+            background: #0b5ed7;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .school-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .school-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .programmes-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .programme-tag {
+            display: inline-block;
+            background: #e9f2ff;
+            color: #0b5ed7;
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 500;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .loading-message,
+        .error-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .error-message {
+            color: #b00020;
+        }
+
+        @media (max-width: 700px) {
+
+            .school-details-container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .school-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .school-header {
+                padding: 22px;
+            }
+
+            .school-header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            EduPath Ghana
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="jhs.html">JHS</a>
+            <a href="scholarships.html">Scholarships</a>
+            <a href="career-guidance.html">Career Guidance</a>
+        </div>
+    </nav>
+
+
+    <!-- SCHOOL DETAILS -->
+    <main class="school-details-container">
+
+        <a href="jhs.html" class="back-button">
+            ← Back to School Directory
+        </a>
+
+        <div id="schoolDetails">
+
+            <div class="loading-message">
+                <h2>Loading school information...</h2>
+                <p>Please wait.</p>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            © 2026 EduPath Ghana. All rights reserved.
+        </p>
+    </footer>
+
+
+    <script src="./script.js"></script>
+
+    <script>
+
+        (function () {
+
+            const API_BASE = "/api/schools";
+
+            const detailsContainer =
+                document.getElementById("schoolDetails");
+
+
+            // Get school ID from URL
+            const urlParams =
+                new URLSearchParams(window.location.search);
+
+            const schoolId =
+                urlParams.get("id");
+
+
+            // Escape HTML
+            function escapeHTML(value) {
+
+                return String(value || "")
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+
+            }
+
+
+            // Load school
+            async function loadSchool() {
+
+                if (!schoolId) {
+
+                    showError(
+                        "No school was selected."
+                    );
+
+                    return;
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `${API_BASE}/${encodeURIComponent(schoolId)}`
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        !response.ok ||
+                        !data.success ||
+                        !data.school
+                    ) {
+
+                        throw new Error(
+                            data.message ||
+                            "School not found."
+                        );
+
+                    }
+
+
+                    displaySchool(
+                        data.school
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "School Details API Error:",
+                        error
+                    );
+
+                    showError(
+                        "Unable to load this school's information. Please make sure the EduPath Ghana backend is running."
+                    );
+
+                }
+
+            }
+
+
+            // Display school information
+            function displaySchool(school) {
+
+                const programmes =
+                    Array.isArray(
+                        school.programmes
+                    )
+                        ? school.programmes
+                        : [];
+
+
+                document.title =
+                    `${school.name} | EduPath Ghana`;
+
+
+                detailsContainer.innerHTML = `
+
+                    <section class="school-header">
+
+                        <h1>
+                            ${escapeHTML(
+                                school.name
+                            )}
+                        </h1>
+
+                        <p>
+                            Senior High School
+                        </p>
+
+                    </section>
+
+
+                    <section class="school-info-grid">
+
+
+                        <div class="info-card">
+
+                            <h3>📍 Location</h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    school.location ||
+                                    "Not available"
+                                )}
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <h3>🌍 Region</h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    school.region ||
+                                    "Not available"
+                                )}
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <h3>🏛️ District</h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    school.district ||
+                                    "Not available"
+                                )}
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <h3>🏫 School Type</h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    school.type ||
+                                    "Not available"
+                                )}
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <h3>👥 Gender</h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    school.gender ||
+                                    "Not available"
+                                )}
+                            </p>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <h3>🛏️ Accommodation</h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    school.accommodation ||
+                                    "Not available"
+                                )}
+                            </p>
+
+                        </div>
+
+
+                    </section>
+
+
+                    <section class="programmes-card">
+
+                        <h2>
+                            📚 Programmes Offered
+                        </h2>
+
+
+                        ${
+                            programmes.length
+                                ? programmes.map(
+                                    function (programme) {
+
+                                        return `
+                                            <span class="programme-tag">
+                                                ${escapeHTML(
+                                                    programme
+                                                )}
+                                            </span>
+                                        `;
+
+                                    }
+                                ).join("")
+                                : `
+                                    <p>
+                                        Programme information is not available.
+                                    </p>
+                                `
+                        }
+
+                    </section>
+
+                `;
+
+            }
+
+
+            // Error message
+            function showError(message) {
+
+                detailsContainer.innerHTML = `
+
+                    <div class="error-message">
+
+                        <h2>
+                            School Not Available
+                        </h2>
+
+                        <p>
+                            ${escapeHTML(message)}
+                        </p>
+
+                        <br>
+
+                        <a href="jhs.html">
+                            ← Return to School Directory
+                        </a>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            // Start
+            loadSchool();
+
+        })();
+
+    </script>
+
+</body>
+
+</html>

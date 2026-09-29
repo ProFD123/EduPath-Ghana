@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EduPath Ghana | Find Your Path. Shape Your Future.</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f5f8fc;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            background: white;
+            padding: 16px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #0b5ed7;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #26344d;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #0b5ed7;
+        }
+
+        .student-account {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .login-link,
+        .profile-link {
+            color: #0b5ed7;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            border: none;
+            background: #dc3545;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .logout-btn:hover {
+            background: #bb2d3b;
+        }
+
+        /* =========================
+           WELCOME SECTION
+        ========================= */
+
+        .welcome-section {
+            padding: 90px 20px 75px;
+            text-align: center;
+            background: #0b5ed7;
+            color: white;
+        }
+
+        .section-label {
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .welcome-section h1 {
+            font-size: 44px;
+            margin-bottom: 18px;
+            font-weight: 900;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .welcome-message {
+            max-width: 750px;
+            margin: 0 auto 35px;
+            color: white;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .welcome-btn {
+            display: inline-block;
+            background: white;
+            color: #0b5ed7;
+            padding: 13px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+
+        .welcome-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-content {
+            width: 92%;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .main-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .main-heading h2 {
+            font-size: 32px;
+            color: #172033;
+            margin-bottom: 10px;
+        }
+
+        .main-heading p {
+            color: #65738b;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* =========================
+           CATEGORY SECTIONS
+        ========================= */
+
+        .category-title {
+            margin-top: 45px;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #172033;
+        }
+
+        .category-title span {
+            color: #0b5ed7;
+        }
+
+        /* =========================
+           FEATURE CARDS
+        ========================= */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px 24px;
+            border-radius: 14px;
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.07);
+
+            border: 1px solid #e6ebf2;
+
+            display: flex;
+            flex-direction: column;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.11);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #eaf2ff;
+
+            font-size: 27px;
+
+            margin-bottom: 18px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #172033;
+        }
+
+        .feature-card p {
+            color: #66748a;
+            font-size: 14px;
+            margin-bottom: 22px;
+            flex-grow: 1;
+        }
+
+        .feature-btn {
+            display: inline-block;
+            text-align: center;
+
+            background: #0b5ed7;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 11px 17px;
+
+            border-radius: 7px;
+
+            font-weight: 700;
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        .feature-btn:hover {
+            background: #084db2;
+        }
+
+        /* =========================
+           STUDENT PROFILE
+        ========================= */
+
+        .profile-section {
+            margin-top: 55px;
+        }
+
+        .profile-card {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b5ed7,
+                    #084298
+                );
+
+            color: white;
+
+            padding: 35px;
+
+            border-radius: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+
+            box-shadow:
+                0 10px 30px rgba(11,94,215,0.2);
+        }
+
+        .profile-card h3 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .profile-card p {
+            color: white;
+            opacity: 0.9;
+        }
+
+        .profile-btn {
+            background: white;
+            color: #0b5ed7;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-section {
+            margin-top: 70px;
+
+            background: white;
+
+            padding: 45px 35px;
+
+            border-radius: 15px;
+
+            border: 1px solid #e6ebf2;
+        }
+
+        .about-section h2 {
+            color: #0b5ed7;
+            margin-bottom: 15px;
+        }
+
+        .about-section p {
+            color: #647188;
+            margin-bottom: 12px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111827;
+            color: white;
+
+            margin-top: 70px;
+
+            padding: 45px 6% 25px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 12px;
+        }
+
+        footer p {
+            color: #b7c0ce;
+            font-size: 14px;
+        }
+
+        footer a {
+            display: block;
+            color: #dce3ed;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 35px auto 0;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #374151;
+
+            text-align: center;
+
+            color: #9ca3af;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            nav {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .feature-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .welcome-section {
+                padding: 65px 18px 55px;
+            }
+
+            .welcome-section h1 {
+                font-size: 34px;
+            }
+
+            .welcome-message {
+                font-size: 15px;
+            }
+
+            .main-content {
+                width: 94%;
+                margin-top: 40px;
+            }
+
+            .main-heading h2 {
+                font-size: 27px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 28px;
+            }
+
+            .profile-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            EduPath Ghana
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="jhs.html">
+                JHS Students
+            </a>
+
+            <a href="explore.html">
+                SHS Students
+            </a>
+
+            <a href="scholarships.html">
+                Scholarships
+            </a>
+
+            <a href="career-guidance.html">
+                Career Guidance
+            </a>
+
+            <a href="review-arena.html">
+                Review Arena
+            </a>
+
+        </div>
+
+
+        <div
+            class="student-account"
+            id="studentAccount"
+        >
+
+            <a
+                href="student-login.html"
+                class="login-link"
+            >
+                👤 Student Login
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         WELCOME
+    ========================== -->
+
+    <section class="welcome-section">
+
+        <p class="section-label">
+            EDUCATION • GUIDANCE • OPPORTUNITIES
+        </p>
+
+        <h1>
+            Welcome To EduPath Ghana
+        </h1>
+
+        <p
+            class="welcome-message"
+            id="welcomeMessage"
+        >
+            Your guide to making informed decisions
+            about your education, career and future.
+        </p>
+
+        <a
+            href="#explore"
+            class="welcome-btn"
+        >
+            Explore EduPath →
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main
+        class="main-content"
+        id="explore"
+    >
+
+        <div class="main-heading">
+
+            <h2>
+                Explore EduPath Ghana
+            </h2>
+
+            <p>
+                Everything you need to discover
+                educational opportunities and
+                plan your future.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             JHS STUDENTS
+        ========================== -->
+
+        <h3 class="category-title">
+
+            For
+            <span>JHS Students</span>
+
+        </h3>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📚
+                </div>
+
+                <h3>
+                    SHS Courses
+                </h3>
+
+                <p>
+                    Explore SHS programmes and
+                    understand the subjects and
+                    opportunities available to you.
+                </p>
+
+                <a
+                    href="shs-courses.html"
+                    class="feature-btn"
+                >
+                    Explore SHS Courses →
+                </a>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🏫
+                </div>
+
+                <h3>
+                    SHS Schools
+                </h3>
+
+                <p>
+                    Search and explore senior high
+                    schools across Ghana and compare
+                    their programmes.
+                </p>
+
+                <a
+                    href="jhs.html"
+                    class="feature-btn"
+                >
+                    Find SHS Schools →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             SHS STUDENTS
+        ========================== -->
+
+        <h3 class="category-title">
+
+            For
+            <span>SHS Students</span>
+
+        </h3>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    University Programmes
+                </h3>
+
+                <p>
+                    Discover university programmes,
+                    learn what they involve and explore
+                    possible career opportunities.
+                </p>
+
+                <a
+                    href="explore.html"
+                    class="feature-btn"
+                >
+                    Explore Programmes →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             OTHER SERVICES
+        ========================== -->
+
+        <h3 class="category-title">
+
+            More From
+            <span>EduPath Ghana</span>
+
+        </h3>
+
+
+        <div class="feature-grid">
+
+
+            <!-- SCHOLARSHIPS -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    Scholarships
+                </h3>
+
+                <p>
+                    Discover scholarship opportunities
+                    that can help support your education.
+                </p>
+
+                <a
+                    href="scholarships.html"
+                    class="feature-btn"
+                >
+                    Find Scholarships →
+                </a>
+
+            </div>
+
+
+            <!-- CAREER GUIDANCE -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🧭
+                </div>
+
+                <h3>
+                    Career Guidance
+                </h3>
+
+                <p>
+                    Explore careers, understand
+                    different career paths and discover
+                    options that may interest you.
+                </p>
+
+                <a
+                    href="career-guidance.html"
+                    class="feature-btn"
+                >
+                    Explore Careers →
+                </a>
+
+            </div>
+
+
+            <!-- REVIEW ARENA -->
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💬
+                </div>
+
+                <h3>
+                    Review Arena
+                </h3>
+
+                <p>
+                    Share your feedback and ideas
+                    to help us make EduPath Ghana
+                    better for students.
+                </p>
+
+                <a
+                    href="review-arena.html"
+                    class="feature-btn"
+                >
+                    Enter Review Arena →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             STUDENT PROFILE
+        ========================== -->
+
+        <section class="profile-section">
+
+            <div class="profile-card">
+
+                <div>
+
+                    <h3>
+                        Your EduPath Student Profile
+                    </h3>
+
+                    <p id="profileDescription">
+                        Create a student account to
+                        keep your EduPath experience
+                        organised.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="student-login.html"
+                    class="profile-btn"
+                    id="profileButton"
+                >
+                    Student Login →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="about-section">
+
+            <h2>
+                About EduPath Ghana
+            </h2>
+
+            <p>
+                EduPath Ghana is a student-focused
+                platform designed to help students
+                make better-informed decisions about
+                their education and future careers.
+            </p>
+
+            <p>
+                From finding SHS schools and courses
+                to exploring university programmes,
+                scholarships and career opportunities,
+                EduPath Ghana brings useful information
+                together in one place.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div>
+
+                <h3>
+                    EduPath Ghana
+                </h3>
+
+                <p>
+                    Find your path.
+                    Shape your future.
+                </p>
+
+                <p style="margin-top: 12px;">
+                    Helping students explore
+                    education and career opportunities.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="jhs.html">
+                    SHS Schools
+                </a>
+
+                <a href="explore.html">
+                    University Programmes
+                </a>
+
+                <a href="scholarships.html">
+                    Scholarships
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    More
+                </h3>
+
+                <a href="career-guidance.html">
+                    Career Guidance
+                </a>
+
+                <a href="review-arena.html">
+                    Review Arena
+                </a>
+
+                <a href="student-login.html">
+                    Student Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 EduPath Ghana.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         STUDENT ACCOUNT SCRIPT
+    ========================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                const account =
+                    document.getElementById(
+                        "studentAccount"
+                    );
+
+                const profileButton =
+                    document.getElementById(
+                        "profileButton"
+                    );
+
+                const profileDescription =
+                    document.getElementById(
+                        "profileDescription"
+                    );
+
+                const welcomeMessage =
+                    document.getElementById(
+                        "welcomeMessage"
+                    );
+
+
+                const savedUser =
+                    localStorage.getItem(
+                        "edupathUser"
+                    );
+
+
+                if (savedUser) {
+
+                    try {
+
+                        const user =
+                            JSON.parse(
+                                savedUser
+                            );
+
+
+                        /* NAVIGATION ACCOUNT */
+
+                        account.innerHTML = `
+
+                            <span>
+                                👤
+                            </span>
+
+                            <a
+                                href="student-profile.html"
+                                class="profile-link"
+                            >
+                                ${escapeHTML(
+                                    user.name
+                                )}
+                            </a>
+
+                            <button
+                                class="logout-btn"
+                                id="logoutBtn"
+                            >
+                                Logout
+                            </button>
+
+                        `;
+
+
+                        /* WELCOME MESSAGE */
+
+                        welcomeMessage.innerHTML = `
+
+                            Welcome back,
+                            <strong>
+                                ${escapeHTML(
+                                    user.name
+                                )}
+                            </strong>!
+
+                            Explore EduPath Ghana
+                            and continue planning
+                            your future.
+
+                        `;
+
+
+                        /* PROFILE CARD */
+
+                        profileDescription.textContent =
+                            "Welcome back! Your student account is active.";
+
+
+                        profileButton.textContent =
+                            "View My Profile →";
+
+
+                        profileButton.href =
+                            "student-profile.html";
+
+
+                        /* LOGOUT */
+
+                        document
+                            .getElementById(
+                                "logoutBtn"
+                            )
+                            .addEventListener(
+                                "click",
+                                function() {
+
+                                    localStorage.removeItem(
+                                        "edupathUser"
+                                    );
+
+                                    window.location.reload();
+
+                                }
+                            );
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "Could not load student account.",
+                            error
+                        );
+
+                        localStorage.removeItem(
+                            "edupathUser"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           HTML SECURITY
+        ========================== */
+
+        function escapeHTML(value) {
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

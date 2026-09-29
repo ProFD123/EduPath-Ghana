@@ -1,0 +1,212 @@
+{
+"programmes": [
+{
+"id": 1,
+"name": "Computer Science",
+"category": "Technology",
+"icon": "💻",
+"description": "Study computing, software, algorithms and technology.",
+"link": "programme.html"
+},
+{
+"id": 2,
+"name": "Medicine",
+"category": "Health",
+"icon": "🩺",
+"description": "Study human health, diseases, diagnosis and treatment.",
+"link": "medicine.html"
+},
+{
+"id": 3,
+"name": "Medical Laboratory Science",
+"category": "Health",
+"icon": "🔬",
+"description": "Study laboratory techniques used to diagnose and investigate diseases.",
+"link": "medical-laboratory-science.html"
+},
+{
+"id": 4,
+"name": "Pharmacy",
+"category": "Health",
+"icon": "💊",
+"description": "Study medicines, drug development, preparation and safe use.",
+"link": "pharmacy.html"
+},
+{
+"id": 5,
+"name": "Nursing",
+"category": "Health",
+"icon": "👩‍⚕️",
+"description": "Learn how to provide professional care and support to patients.",
+"link": "nursing.html"
+},
+{
+"id": 6,
+"name": "Public Health",
+"category": "Health",
+"icon": "🌍",
+"description": "Study disease prevention, health promotion and community wellbeing.",
+"link": "public-health.html"
+},
+{
+"id": 7,
+"name": "Nutrition & Dietetics",
+"category": "Health",
+"icon": "🥗",
+"description": "Study nutrition, food and how diet affects human health.",
+"link": "nutrition-dietetics.html"
+},
+{
+"id": 8,
+"name": "Biochemistry",
+"category": "Science",
+"icon": "🧪",
+"description": "Study the chemical processes occurring in living organisms.",
+"link": "biochemistry.html"
+},
+{
+"id": 9,
+"name": "Civil Engineering",
+"category": "Engineering",
+"icon": "🏗️",
+"description": "Learn how buildings, roads, bridges and infrastructure are developed.",
+"link": "civil-engineering.html"
+},
+{
+"id": 10,
+"name": "Electrical Engineering",
+"category": "Engineering",
+"icon": "⚡",
+"description": "Study electricity, electronics and electrical systems.",
+"link": "electrical-engineering.html"
+},
+{
+"id": 11,
+"name": "Mechanical Engineering",
+"category": "Engineering",
+"icon": "⚙️",
+"description": "Study machines, mechanics, design and manufacturing systems.",
+"link": "mechanical-engineering.html"
+},
+{
+"id": 12,
+"name": "Chemical Engineering",
+"category": "Engineering",
+"icon": "⚗️",
+"description": "Apply chemistry, mathematics and engineering to industrial processes.",
+"link": "chemical-engineering.html"
+},
+{
+"id": 13,
+"name": "Information Systems",
+"category": "Technology",
+"icon": "🖥️",
+"description": "Learn how technology and information systems support organisations.",
+"link": "information-systems.html"
+},
+{
+"id": 14,
+"name": "Information Technology",
+"category": "Technology",
+"icon": "🌐",
+"description": "Study computer systems, networks, software and IT infrastructure.",
+"link": "information-technology.html"
+},
+{
+"id": 15,
+"name": "Cyber Security",
+"category": "Technology",
+"icon": "🔐",
+"description": "Learn how to protect systems, networks and information.",
+"link": "cyber-security.html"
+},
+{
+"id": 16,
+"name": "Business Administration",
+"category": "Business",
+"icon": "📊",
+"description": "Explore management, finance, marketing and business operations.",
+"link": "business-administration.html"
+},
+{
+"id": 17,
+"name": "Accounting",
+"category": "Business",
+"icon": "💰",
+"description": "Study financial records, reporting, auditing and financial management.",
+"link": "accounting.html"
+},
+{
+"id": 18,
+"name": "Economics",
+"category": "Business",
+"icon": "📈",
+"description": "Study how individuals, businesses and governments use resources.",
+"link": "economics.html"
+},
+{
+"id": 19,
+"name": "Marketing",
+"category": "Business",
+"icon": "📣",
+"description": "Learn about customers, branding, promotion and market strategy.",
+"link": "marketing.html"
+},
+{
+"id": 20,
+"name": "Law",
+"category": "Humanities",
+"icon": "⚖️",
+"description": "Study legal systems, justice, rights and responsibilities.",
+"link": "law.html"
+},
+{
+"id": 21,
+"name": "Psychology",
+"category": "Humanities",
+"icon": "🧠",
+"description": "Study human behaviour, thoughts, emotions and mental processes.",
+"link": "psychology.html"
+},
+{
+"id": 22,
+"name": "Political Science",
+"category": "Humanities",
+"icon": "🏛️",
+"description": "Study government, politics, public policy and institutions.",
+"link": "political-science.html"
+},
+{
+"id": 23,
+"name": "Communication Studies",
+"category": "Humanities",
+"icon": "🎙️",
+"description": "Learn about media, communication, journalism and public relations.",
+"link": "communication-studies.html"
+},
+{
+"id": 24,
+"name": "Computer Engineering",
+"category": "Engineering",
+"icon": "🖥️",
+"description": "Combine computer science and electronics to build computer systems.",
+"link": "computer-engineering.html"
+},
+{
+"id": 25,
+"name": "Architecture",
+"category": "Engineering",
+"icon": "🏛️",
+"description": "Study the design, planning and development of buildings and spaces.",
+"link": "architecture.html"
+},
+{
+"id": 26,
+"name": "Agricultural Science",
+"category": "Science",
+"icon": "🌱",
+"description": "Study crops, animals, agriculture and modern food production.",
+"link": "agricultural-science.html"
+}
+]
+}

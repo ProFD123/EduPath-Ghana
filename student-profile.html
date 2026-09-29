@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Student Profile | EduPath Ghana
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <style>
+
+        /* ==============================
+           PROFILE PAGE
+        ============================== */
+
+        .profile-page {
+            min-height: 80vh;
+            padding: 60px 20px;
+            background: #f5f9ff;
+        }
+
+        .profile-container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+
+        /* ==============================
+           PROFILE HEADER
+        ============================== */
+
+        .profile-header {
+            background: #0b5ed7;
+            color: white;
+            padding: 45px 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: white;
+            color: #0b5ed7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 40px;
+        }
+
+        .profile-header h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .profile-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+
+        /* ==============================
+           CARDS
+        ============================== */
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 6px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .profile-card h2 {
+            margin: 0 0 20px;
+            color: #222;
+            font-size: 22px;
+        }
+
+
+        /* ==============================
+           ACCOUNT INFORMATION
+        ============================== */
+
+        .profile-info {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 18px;
+        }
+
+        .info-item {
+            background: #f5f9ff;
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .info-item strong {
+            display: block;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .info-item span {
+            font-size: 16px;
+            font-weight: bold;
+            color: #222;
+            word-break: break-word;
+        }
+
+
+        /* ==============================
+           SUMMARY
+        ============================== */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 15px;
+        }
+
+        .summary-box {
+            background: #f5f9ff;
+            padding: 22px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .summary-box .summary-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .summary-box h3 {
+            margin: 5px 0;
+            font-size: 28px;
+            color: #0b5ed7;
+        }
+
+        .summary-box p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+
+        /* ==============================
+           MY EDUPATH
+        ============================== */
+
+        .favourites-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 20px;
+        }
+
+        .favourite-box {
+            border: 1px solid #e5eaf0;
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .favourite-box:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 6px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .favourite-box .icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .favourite-box h3 {
+            margin: 0 0 8px;
+        }
+
+        .favourite-box p {
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .favourite-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #0b5ed7;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+
+        /* ==============================
+           CAREER GUIDANCE
+        ============================== */
+
+        .career-card {
+            background: #eef5ff;
+            border-left: 5px solid #0b5ed7;
+            padding: 22px;
+            border-radius: 10px;
+        }
+
+        .career-card h3 {
+            margin-top: 0;
+            color: #0b5ed7;
+        }
+
+        .career-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+
+        /* ==============================
+           QUICK ACTIONS
+        ============================== */
+
+        .profile-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .home-btn {
+            background: #0b5ed7;
+            color: white;
+        }
+
+        .logout-btn {
+            background: #eeeeee;
+            color: #444;
+        }
+
+
+        /* ==============================
+           LOGIN REQUIRED
+        ============================== */
+
+        .login-required {
+            max-width: 500px;
+            margin: 80px auto;
+            text-align: center;
+            background: white;
+            padding: 40px 25px;
+            border-radius: 18px;
+
+            box-shadow:
+                0 6px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .login-required h1 {
+            margin-bottom: 15px;
+        }
+
+        .login-required p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .login-required a {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #0b5ed7;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 600px) {
+
+            .profile-page {
+                padding: 40px 15px;
+            }
+
+            .profile-header {
+                padding: 35px 20px;
+            }
+
+            .profile-header h1 {
+                font-size: 25px;
+            }
+
+            .profile-card {
+                padding: 22px 18px;
+            }
+
+            .profile-card h2 {
+                font-size: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==============================
+     NAVIGATION
+============================== -->
+
+<header>
+
+    <nav class="navbar">
+
+        <a
+            href="index.html"
+            class="logo">
+
+            EduPath <span>Ghana</span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="jhs.html">
+                JHS Students
+            </a>
+
+            <a href="explore.html">
+                SHS Students
+            </a>
+
+            <a href="scholarships.html">
+                Scholarships
+            </a>
+
+            <a href="career-guidance.html">
+                Career Guidance
+            </a>
+
+            <a href="review-arena.html">
+                Review Arena
+            </a>
+
+        </div>
+
+
+        <button
+            class="menu-btn"
+            id="menuBtn">
+
+            ☰
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ==============================
+     PROFILE
+============================== -->
+
+<main class="profile-page">
+
+    <div
+        id="profileContent"
+        class="profile-container">
+    </div>
+
+</main>
+
+
+
+<!-- ==============================
+     FOOTER
+============================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <h3>
+                EduPath <span>Ghana</span>
+            </h3>
+
+            <p>
+                Find your path. Shape your future.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="jhs.html">
+                JHS Students
+            </a>
+
+            <a href="explore.html">
+                SHS Students
+            </a>
+
+            <a href="scholarships.html">
+                Scholarships
+            </a>
+
+            <a href="career-guidance.html">
+                Career Guidance
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 EduPath Ghana.
+            All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const container =
+            document.getElementById(
+                "profileContent"
+            );
+
+
+        const savedUser =
+            localStorage.getItem(
+                "edupathUser"
+            );
+
+
+        /* ==========================
+           CHECK LOGIN
+        ========================== */
+
+        if (!savedUser) {
+
+            container.innerHTML = `
+
+                <div class="login-required">
+
+                    <div style="font-size:50px;">
+                        🔐
+                    </div>
+
+                    <h1>
+                        Student Login Required
+                    </h1>
+
+                    <p>
+                        Please log in to access
+                        your EduPath Ghana profile.
+                    </p>
+
+                    <a
+                        href="student-login.html">
+
+                        Login / Create Account →
+
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        try {
+
+            const user =
+                JSON.parse(savedUser);
+
+
+            /* ==========================
+               SAFE USER DATA
+            ========================== */
+
+            const name =
+                escapeHTML(
+                    user.name || "Student"
+                );
+
+            const email =
+                escapeHTML(
+                    user.email || "Not available"
+                );
+
+            const id =
+                escapeHTML(
+                    user.id || "N/A"
+                );
+
+
+            /* ==========================
+               FAVOURITE DATA
+            ========================== */
+
+            const schools =
+                Array.isArray(user.favouriteSchools)
+                    ? user.favouriteSchools
+                    : [];
+
+            const programmes =
+                Array.isArray(user.favouriteProgrammes)
+                    ? user.favouriteProgrammes
+                    : [];
+
+            const scholarships =
+                Array.isArray(user.favouriteScholarships)
+                    ? user.favouriteScholarships
+                    : [];
+
+
+            /* ==========================
+               CAREER DATA
+            ========================== */
+
+            const careerResult =
+                user.careerGuidanceResult ||
+                user.careerResult ||
+                null;
+
+
+            /* ==========================
+               PROFILE PAGE
+            ========================== */
+
+            container.innerHTML = `
+
+                <div class="profile-header">
+
+                    <div class="profile-avatar">
+                        👤
+                    </div>
+
+                    <h1>
+                        ${name}
+                    </h1>
+
+                    <p>
+                        EduPath Ghana Student
+                    </p>
+
+                </div>
+
+
+                <!-- ACCOUNT INFORMATION -->
+
+                <div class="profile-card">
+
+                    <h2>
+                        Account Information
+                    </h2>
+
+                    <div class="profile-info">
+
+                        <div class="info-item">
+
+                            <strong>
+                                Student ID
+                            </strong>
+
+                            <span>
+                                #${id}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <strong>
+                                Full Name
+                            </strong>
+
+                            <span>
+                                ${name}
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <strong>
+                                Email Address
+                            </strong>
+
+                            <span>
+                                ${email}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUMMARY -->
+
+                <div class="profile-card">
+
+                    <h2>
+                        My EduPath Summary
+                    </h2>
+
+                    <div class="summary-grid">
+
+
+                        <div class="summary-box">
+
+                            <div class="summary-icon">
+                                🏫
+                            </div>
+
+                            <h3>
+                                ${schools.length}
+                            </h3>
+
+                            <p>
+                                Saved Schools
+                            </p>
+
+                        </div>
+
+
+                        <div class="summary-box">
+
+                            <div class="summary-icon">
+                                🎓
+                            </div>
+
+                            <h3>
+                                ${programmes.length}
+                            </h3>
+
+                            <p>
+                                Saved Programmes
+                            </p>
+
+                        </div>
+
+
+                        <div class="summary-box">
+
+                            <div class="summary-icon">
+                                💰
+                            </div>
+
+                            <h3>
+                                ${scholarships.length}
+                            </h3>
+
+                            <p>
+                                Saved Scholarships
+                            </p>
+
+                        </div>
+
+
+                        <div class="summary-box">
+
+                            <div class="summary-icon">
+                                🧭
+                            </div>
+
+                            <h3>
+                                ${careerResult ? "✓" : "—"}
+                            </h3>
+
+                            <p>
+                                Career Guidance
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MY EDUPATH -->
+
+                <div class="profile-card">
+
+                    <h2>
+                        My EduPath
+                    </h2>
+
+                    <div class="favourites-grid">
+
+
+                        <div class="favourite-box">
+
+                            <div class="icon">
+                                🏫
+                            </div>
+
+                            <h3>
+                                My Schools
+                            </h3>
+
+                            <p>
+                                You currently have
+                                <strong>
+                                    ${schools.length}
+                                </strong>
+                                saved school${schools.length === 1 ? "" : "s"}.
+                            </p>
+
+                            <a
+                                href="jhs.html"
+                                class="favourite-btn">
+
+                                ${schools.length > 0
+                                    ? "View Schools"
+                                    : "Explore Schools"}
+
+                            </a>
+
+                        </div>
+
+
+                        <div class="favourite-box">
+
+                            <div class="icon">
+                                🎓
+                            </div>
+
+                            <h3>
+                                My Programmes
+                            </h3>
+
+                            <p>
+                                You currently have
+                                <strong>
+                                    ${programmes.length}
+                                </strong>
+                                saved programme${programmes.length === 1 ? "" : "s"}.
+                            </p>
+
+                            <a
+                                href="explore.html"
+                                class="favourite-btn">
+
+                                ${programmes.length > 0
+                                    ? "View Programmes"
+                                    : "Explore Programmes"}
+
+                            </a>
+
+                        </div>
+
+
+                        <div class="favourite-box">
+
+                            <div class="icon">
+                                💰
+                            </div>
+
+                            <h3>
+                                My Scholarships
+                            </h3>
+
+                            <p>
+                                You currently have
+                                <strong>
+                                    ${scholarships.length}
+                                </strong>
+                                saved scholarship${scholarships.length === 1 ? "" : "s"}.
+                            </p>
+
+                            <a
+                                href="scholarships.html"
+                                class="favourite-btn">
+
+                                ${scholarships.length > 0
+                                    ? "View Scholarships"
+                                    : "Find Scholarships"}
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAREER GUIDANCE -->
+
+                <div class="profile-card">
+
+                    <h2>
+                        🧭 Career Guidance
+                    </h2>
+
+                    ${
+                        careerResult
+                        ? `
+
+                            <div class="career-card">
+
+                                <h3>
+                                    Your Career Guidance Result
+                                </h3>
+
+                                <p>
+                                    You have completed
+                                    the EduPath Career Finder.
+                                    Your latest result is saved
+                                    with your student profile.
+                                </p>
+
+                                <a
+                                    href="career-guidance.html"
+                                    class="favourite-btn">
+
+                                    View Career Guidance
+
+                                </a>
+
+                            </div>
+
+                        `
+                        : `
+
+                            <div class="career-card">
+
+                                <h3>
+                                    Discover Your Career Path
+                                </h3>
+
+                                <p>
+                                    You haven't completed the
+                                    Career Finder yet. Answer a
+                                    few questions to discover
+                                    career areas that may match
+                                    your interests.
+                                </p>
+
+                                <a
+                                    href="career-guidance.html"
+                                    class="favourite-btn">
+
+                                    Start Career Finder →
+
+                                </a>
+
+                            </div>
+
+                        `
+                    }
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="profile-actions">
+
+                    <a
+                        href="index.html"
+                        class="action-btn home-btn">
+
+                        ← Back to EduPath
+
+                    </a>
+
+
+                    <button
+                        id="logoutButton"
+                        class="action-btn logout-btn">
+
+                        Logout
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            /* ==========================
+               LOGOUT
+            ========================== */
+
+            const logoutButton =
+                document.getElementById(
+                    "logoutButton"
+                );
+
+
+            if (logoutButton) {
+
+                logoutButton.addEventListener(
+                    "click",
+                    function() {
+
+                        localStorage.removeItem(
+                            "edupathUser"
+                        );
+
+                        window.location.href =
+                            "student-login.html";
+
+                    }
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Could not load student profile:",
+                error
+            );
+
+            localStorage.removeItem(
+                "edupathUser"
+            );
+
+            window.location.href =
+                "student-login.html";
+
+        }
+
+    }
+);
+
+
+/* ==============================
+   HTML ESCAPE
+============================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Scholarships | EduPath Ghana</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+
+        /* ============================= */
+        /* SAVE SCHOLARSHIP BUTTON */
+        /* ============================= */
+
+        .save-favourite-btn {
+
+            display: block;
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            padding: 11px 14px;
+
+            border: 1px solid #0b5ed7;
+
+            background: white;
+
+            color: #0b5ed7;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .save-favourite-btn:hover {
+
+            background: #0b5ed7;
+
+            color: white;
+
+        }
+
+
+        .save-favourite-btn.saved {
+
+            background: #0b5ed7;
+
+            color: white;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ============================= -->
+<!-- NAVBAR -->
+<!-- ============================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        EduPath Ghana
+    </div>
+
+    <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open menu"
+    >
+        ☰
+    </button>
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="explore.html">
+            Explore
+        </a>
+
+        <a href="jhs.html">
+            JHS Students
+        </a>
+
+        <a
+            href="scholarships.html"
+            class="active"
+        >
+            Scholarships
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ============================= -->
+<!-- SCHOLARSHIP HERO -->
+<!-- ============================= -->
+
+<section class="scholarship-hero">
+
+    <div class="scholarship-hero-content">
+
+        <p class="section-label">
+            SCHOLARSHIP OPPORTUNITIES
+        </p>
+
+        <h1>
+            Find opportunities to fund your education.
+        </h1>
+
+        <p>
+            Discover verified scholarship opportunities
+            and learn how to take the next step toward
+            your educational goals.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- SCHOLARSHIP DIRECTORY -->
+<!-- ============================= -->
+
+<section class="scholarship-section">
+
+    <div class="section-heading">
+
+        <p>
+            SCHOLARSHIP DIRECTORY
+        </p>
+
+        <h2>
+            Explore scholarships
+        </h2>
+
+        <span>
+            Search and filter scholarship opportunities
+            based on your needs.
+        </span>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- SEARCH & FILTERS -->
+    <!-- ============================= -->
+
+    <div class="scholarship-directory">
+
+        <div class="scholarship-search">
+
+            <input
+                type="text"
+                id="scholarshipSearch"
+                placeholder="Search scholarships..."
+            >
+
+
+            <select id="scholarshipCountry">
+
+                <option value="all">
+                    All Locations
+                </option>
+
+                <option value="Ghana">
+                    Ghana
+                </option>
+
+                <option value="Algeria">
+                    Algeria
+                </option>
+
+                <option value="China">
+                    China
+                </option>
+
+                <option value="Australia">
+                    Australia
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <select id="scholarshipLevel">
+
+                <option value="all">
+                    All Study Levels
+                </option>
+
+                <option value="SHS">
+                    SHS
+                </option>
+
+                <option value="Undergraduate">
+                    Undergraduate
+                </option>
+
+                <option value="Postgraduate">
+                    Postgraduate
+                </option>
+
+                <option value="Technical">
+                    Technical / Vocational
+                </option>
+
+            </select>
+
+
+            <select id="scholarshipFunding">
+
+                <option value="all">
+                    All Funding Types
+                </option>
+
+                <option value="Fully Funded">
+                    Fully Funded
+                </option>
+
+                <option value="Partially Funded">
+                    Partially Funded
+                </option>
+
+                <option value="Tuition Support">
+                    Tuition Support
+                </option>
+
+            </select>
+
+
+            <button
+                id="scholarshipSearchBtn"
+            >
+                Search
+            </button>
+
+        </div>
+
+
+
+        <!-- ============================= -->
+        <!-- RESULTS -->
+        <!-- ============================= -->
+
+        <div
+            id="scholarshipResults"
+            class="scholarship-results"
+        >
+
+            <p>
+                Loading scholarships...
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- SCHOLARSHIP TIPS -->
+<!-- ============================= -->
+
+<section class="scholarship-tips">
+
+    <div class="section-heading">
+
+        <p>
+            SCHOLARSHIP TIPS
+        </p>
+
+        <h2>
+            Before you apply
+        </h2>
+
+    </div>
+
+
+    <div class="scholarship-tip-grid">
+
+
+        <div class="scholarship-tip-card">
+
+            <div class="tip-icon">
+                📅
+            </div>
+
+            <h3>
+                Check the deadline
+            </h3>
+
+            <p>
+                Always confirm the application deadline
+                before preparing your application.
+            </p>
+
+        </div>
+
+
+
+        <div class="scholarship-tip-card">
+
+            <div class="tip-icon">
+                📄
+            </div>
+
+            <h3>
+                Prepare your documents
+            </h3>
+
+            <p>
+                Keep your academic results, identification,
+                admission documents and other required
+                documents ready.
+            </p>
+
+        </div>
+
+
+
+        <div class="scholarship-tip-card">
+
+            <div class="tip-icon">
+                🔎
+            </div>
+
+            <h3>
+                Verify the opportunity
+            </h3>
+
+            <p>
+                Check the official scholarship notice
+                before submitting personal information
+                or documents.
+            </p>
+
+        </div>
+
+
+
+        <div class="scholarship-tip-card">
+
+            <div class="tip-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Avoid scholarship scams
+            </h3>
+
+            <p>
+                Be careful with anyone promising guaranteed
+                scholarships or requesting unofficial payments.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- OFFICIAL SOURCE -->
+<!-- ============================= -->
+
+<section class="scholarship-official">
+
+    <div>
+
+        <p class="section-label">
+            VERIFIED INFORMATION
+        </p>
+
+        <h2>
+            Use official scholarship sources
+        </h2>
+
+        <p>
+            EduPath Ghana is designed to help students
+            discover opportunities, but always check the
+            official scholarship provider for the latest
+            requirements and deadlines.
+        </p>
+
+        <a
+            href="https://scholarships.gov.gh/opportunities"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="primary-btn"
+        >
+            View Official Opportunities →
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- FOOTER -->
+<!-- ============================= -->
+
+<footer id="about">
+
+    <div class="footer-content">
+
+        <div>
+
+            <h3>
+                EduPath Ghana
+            </h3>
+
+            <p>
+                Find your path. Shape your future.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="explore.html">
+                Explore
+            </a>
+
+            <a href="jhs.html">
+                JHS Students
+            </a>
+
+            <a href="scholarships.html">
+                Scholarships
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 EduPath Ghana. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ============================= -->
+<!-- JAVASCRIPT -->
+<!-- ============================= -->
+
+<script src="./script.js"></script>
+
+<script src="./favourites.js"></script>
+
+<script src="./scholarships.js"></script>
+
+
+
+<!-- ============================= -->
+<!-- SCHOLARSHIP FAVOURITES -->
+<!-- ============================= -->
+
+<script>
+
+    // ========================================
+    // TOGGLE SCHOLARSHIP FAVOURITE
+    // ========================================
+
+    async function toggleScholarshipFavourite(
+        scholarshipId,
+        button
+    ) {
+
+        if (
+            !window.EduPathFavourites ||
+            !window.EduPathFavourites.available
+        ) {
+
+            window.location.href =
+                "student-login.html";
+
+            return;
+
+        }
+
+
+        try {
+
+            const saved =
+                await window.EduPathFavourites.check(
+                    "scholarships",
+                    scholarshipId
+                );
+
+
+            if (saved) {
+
+                await window.EduPathFavourites.remove(
+                    "scholarships",
+                    scholarshipId
+                );
+
+
+                button.textContent =
+                    "♡ Save Scholarship";
+
+
+                button.classList.remove(
+                    "saved"
+                );
+
+
+            } else {
+
+                await window.EduPathFavourites.save(
+                    "scholarships",
+                    scholarshipId
+                );
+
+
+                button.textContent =
+                    "♥ Saved";
+
+
+                button.classList.add(
+                    "saved"
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Scholarship favourite error:",
+                error
+            );
+
+
+            alert(
+                "Could not update your saved scholarship."
+            );
+
+        }
+
+    }
+
+
+
+    // ========================================
+    // UPDATE SAVED SCHOLARSHIP BUTTONS
+    // ========================================
+
+    async function updateScholarshipFavouriteButtons() {
+
+        if (
+            !window.EduPathFavourites ||
+            !window.EduPathFavourites.available
+        ) {
+
+            return;
+
+        }
+
+
+        const buttons =
+            document.querySelectorAll(
+                ".save-favourite-btn"
+            );
+
+
+        for (
+            const button
+            of buttons
+        ) {
+
+            const scholarshipId =
+                button.dataset.scholarshipId;
+
+
+            const saved =
+                await window.EduPathFavourites.check(
+                    "scholarships",
+                    scholarshipId
+                );
+
+
+            if (saved) {
+
+                button.textContent =
+                    "♥ Saved";
+
+
+                button.classList.add(
+                    "saved"
+                );
+
+            }
+
+        }
+
+    }
+
+
+
+    // ========================================
+    // WAIT FOR SCHOLARSHIP CARDS
+    // ========================================
+
+    const scholarshipResults =
+        document.getElementById(
+            "scholarshipResults"
+        );
+
+
+    /*
+        scholarships.js creates the scholarship
+        cards dynamically.
+
+        We watch for those cards and add the
+        favourite buttons automatically.
+    */
+
+    const scholarshipObserver =
+        new MutationObserver(
+            function () {
+
+                addScholarshipButtons();
+
+            }
+        );
+
+
+    scholarshipObserver.observe(
+        scholarshipResults,
+        {
+            childList: true,
+            subtree: true
+        }
+    );
+
+
+
+    // ========================================
+    // ADD SAVE BUTTONS
+    // ========================================
+
+    function addScholarshipButtons() {
+
+        const cards =
+            scholarshipResults.querySelectorAll(
+                ".scholarship-card"
+            );
+
+
+        cards.forEach(
+            function(card) {
+
+                if (
+                    card.querySelector(
+                        ".save-favourite-btn"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                /*
+                    Find scholarship ID.
+
+                    scholarships.js normally stores
+                    the ID on the card or inside
+                    the generated content.
+                */
+
+                const scholarshipId =
+                    card.dataset.id ||
+                    card.dataset.scholarshipId;
+
+
+                if (
+                    scholarshipId === undefined ||
+                    scholarshipId === null
+                ) {
+
+                    return;
+
+                }
+
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.className =
+                    "save-favourite-btn";
+
+
+                button.dataset.scholarshipId =
+                    scholarshipId;
+
+
+                button.textContent =
+                    "♡ Save Scholarship";
+
+
+                button.onclick =
+                    function () {
+
+                        toggleScholarshipFavourite(
+                            scholarshipId,
+                            button
+                        );
+
+                    };
+
+
+                card.appendChild(
+                    button
+                );
+
+
+                updateScholarshipFavouriteButtons();
+
+            }
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
