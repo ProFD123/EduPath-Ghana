@@ -1,13 +1,18 @@
 {
-  "name": "backend",
+  "name": "edupath-ghana-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "EduPath Ghana backend API",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "edupath",
+    "ghana",
+    "education"
+  ],
+  "author": "EduPath Ghana",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
