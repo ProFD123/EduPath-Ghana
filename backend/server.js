@@ -101,7 +101,7 @@ app.post(
                 message
             } = req.body;
 
-            if (!name || !message) {
+            if (!message) {
 
                 return res.status(400).json({
                     success: false,
@@ -113,7 +113,7 @@ app.post(
 
             const submission =
                 database.addSubmission({
-                    name,
+                  name: name || "Anonymous",
                     email,
                     type,
                     message
