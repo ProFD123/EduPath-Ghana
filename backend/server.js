@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
+const cors = require("cors");
 
 const database = require("./database");
 const programmesDb = require("./programmes");
@@ -17,6 +18,11 @@ const PORT = process.env.PORT || 3000;
 // MIDDLEWARE
 // ==================================================
 
+app.use(
+    cors({
+        origin: "https://profd123.github.io"
+    })
+);
 app.use(express.json());
 
 app.use(
