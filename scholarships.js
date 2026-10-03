@@ -6,7 +6,7 @@
 
 (function () {
 
-    const API_URL = "/api/scholarships";
+    const API_URL = "https://edupath-ghana-backend.onrender.com/api/scholarships";
 
 
     const scholarshipSearch =
