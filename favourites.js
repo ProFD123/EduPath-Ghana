@@ -1,188 +1,257 @@
-/* =====================================
-   EDUPATH GHANA FAVOURITES SYSTEM
-===================================== */
+/* =========================================
+   EDUPATH GHANA — FAVOURITES SYSTEM
+   ========================================= */
 
 (function () {
+    "use strict";
 
-    const savedUser =
-        localStorage.getItem(
-            "edupathUser"
-        );
+    const API_BASE =
+        "https://edupath-ghana-backend.onrender.com";
 
+    const STORAGE_KEY = "edupathUser";
 
-    if (!savedUser) {
+    const ALLOWED_TYPES = [
+        "schools",
+        "programmes",
+        "scholarships"
+    ];
 
-        window.EduPathFavourites = {
+    // =====================================
+    // GET LOGGED-IN USER
+    // =====================================
 
-            available: false,
+    function getUser() {
+        try {
+            const savedUser =
+                localStorage.getItem(STORAGE_KEY);
 
-            save: function () {
-
-                window.location.href =
-                    "student-login.html";
-
-            },
-
-            remove: function () {},
-
-            check: async function () {
-
-                return false;
-
+            if (!savedUser) {
+                return null;
             }
 
-        };
+            const user = JSON.parse(savedUser);
 
-        return;
+            if (
+                !user ||
+                typeof user !== "object" ||
+                user.id === undefined ||
+                user.id === null ||
+                String(user.id).trim() === ""
+            ) {
+                return null;
+            }
 
+            return user;
+
+        } catch (error) {
+            console.error(
+                "Could not read saved user:",
+                error
+            );
+
+            return null;
+        }
     }
 
+    // =====================================
+    // VALIDATE REQUEST
+    // =====================================
 
-    let user;
+    function getRequestURL(type, itemId) {
 
-    try {
+        if (!ALLOWED_TYPES.includes(type)) {
+            throw new Error(
+                "Invalid favourite type."
+            );
+        }
 
-        user =
-            JSON.parse(savedUser);
+        if (
+            itemId === undefined ||
+            itemId === null ||
+            String(itemId).trim() === ""
+        ) {
+            throw new Error(
+                "Invalid favourite ID."
+            );
+        }
 
-    } catch (error) {
+        const user = getUser();
 
-        localStorage.removeItem(
-            "edupathUser"
+        if (!user) {
+            throw new Error(
+                "Please log in to continue."
+            );
+        }
+
+        return (
+            `${API_BASE}/api/users/` +
+            `${encodeURIComponent(user.id)}/` +
+            `favourites/${type}/` +
+            `${encodeURIComponent(itemId)}`
+        );
+    }
+
+    // =====================================
+    // SEND API REQUEST
+    // =====================================
+
+    async function request(
+        type,
+        itemId,
+        method = "GET"
+    ) {
+
+        const url = getRequestURL(
+            type,
+            itemId
         );
 
-        window.EduPathFavourites = {
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                "Accept": "application/json"
+            }
+        });
 
-            available: false
+        const data = await response.json();
 
-        };
+        if (!response.ok || data.success === false) {
 
-        return;
+            throw new Error(
+                data.message ||
+                "Favourite request failed."
+            );
+        }
 
+        return data;
     }
 
+    // =====================================
+    // UPDATE LOCAL FAVOURITES
+    // =====================================
 
-    const userId =
-        user.id;
-
-
-    async function save(
+    function updateLocalFavourite(
         type,
-        itemId
+        itemId,
+        isSaved
     ) {
 
         try {
+            const user = getUser();
 
-            const response =
-                await fetch(
-                    `/api/users/${userId}/favourites`,
-                    {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body:
-                            JSON.stringify({
-
-                                type,
-
-                                itemId
-
-                            })
-
-                    }
-                );
-
-
-            const data =
-                await response.json();
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    data.message ||
-                    "Could not save favourite."
-                );
-
+            if (!user) {
+                return;
             }
 
+            if (
+                !user.favourites ||
+                typeof user.favourites !== "object"
+            ) {
+                user.favourites = {};
+            }
 
-            updateLocalUser(
-                data.favourites
+            if (!Array.isArray(user.favourites[type])) {
+                user.favourites[type] = [];
+            }
+
+            const favourites =
+                user.favourites[type].map(String);
+
+            const id = String(itemId);
+
+            if (isSaved) {
+
+                if (!favourites.includes(id)) {
+                    favourites.push(id);
+                }
+
+            } else {
+
+                const index =
+                    favourites.indexOf(id);
+
+                if (index !== -1) {
+                    favourites.splice(index, 1);
+                }
+            }
+
+            user.favourites[type] = favourites;
+
+            user.favouriteSchools =
+                user.favourites.schools || [];
+
+            user.favouriteProgrammes =
+                user.favourites.programmes || [];
+
+            user.favouriteScholarships =
+                user.favourites.scholarships || [];
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(user)
             );
 
+        } catch (error) {
+
+            console.error(
+                "Could not update local favourites:",
+                error
+            );
+        }
+    }
+
+    // =====================================
+    // SAVE FAVOURITE
+    // =====================================
+
+    async function save(type, itemId) {
+
+        try {
+
+            const data = await request(
+                type,
+                itemId,
+                "POST"
+            );
+
+            updateLocalFavourite(
+                type,
+                itemId,
+                true
+            );
 
             return data;
 
         } catch (error) {
 
             console.error(
-                "Favourite error:",
+                "Save favourite error:",
                 error
             );
 
             throw error;
-
         }
-
     }
 
+    // =====================================
+    // REMOVE FAVOURITE
+    // =====================================
 
-    async function remove(
-        type,
-        itemId
-    ) {
+    async function remove(type, itemId) {
 
         try {
 
-            const response =
-                await fetch(
-                    `/api/users/${userId}/favourites`,
-                    {
-
-                        method: "DELETE",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body:
-                            JSON.stringify({
-
-                                type,
-
-                                itemId
-
-                            })
-
-                    }
-                );
-
-
-            const data =
-                await response.json();
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    data.message ||
-                    "Could not remove favourite."
-                );
-
-            }
-
-
-            updateLocalUser(
-                data.favourites
+            const data = await request(
+                type,
+                itemId,
+                "DELETE"
             );
 
+            updateLocalFavourite(
+                type,
+                itemId,
+                false
+            );
 
             return data;
 
@@ -194,94 +263,58 @@
             );
 
             throw error;
-
         }
-
     }
 
+    // =====================================
+    // CHECK FAVOURITE
+    // =====================================
 
-    async function check(
-        type,
-        itemId
-    ) {
+    async function check(type, itemId) {
 
         try {
 
-            const response =
-                await fetch(
-                    `/api/users/${userId}/favourites/${type}/${itemId}`
-                );
-
-
-            const data =
-                await response.json();
-
+            const data = await request(
+                type,
+                itemId,
+                "GET"
+            );
 
             return data.favourite === true;
 
         } catch (error) {
 
-            console.error(error);
-
-            return false;
-
-        }
-
-    }
-
-
-    function updateLocalUser(
-        favourites
-    ) {
-
-        try {
-
-            user.favourites =
-                favourites;
-
-
-            /*
-             * Keep the alternative property names
-             * used by the profile page in sync.
-             */
-
-            user.favouriteSchools =
-                favourites.schools || [];
-
-            user.favouriteProgrammes =
-                favourites.programmes || [];
-
-            user.favouriteScholarships =
-                favourites.scholarships || [];
-
-
-            localStorage.setItem(
-                "edupathUser",
-                JSON.stringify(user)
+            console.error(
+                "Check favourite error:",
+                error
             );
 
-        } catch (error) {
-
-            console.error(error);
-
+            return false;
         }
-
     }
 
+    // =====================================
+    // INITIALIZE SYSTEM
+    // =====================================
+
+    const user = getUser();
 
     window.EduPathFavourites = {
 
-        available: true,
+        available: Boolean(user),
 
-        userId,
+        userId: user ? user.id : null,
 
-        save,
+        save: save,
 
-        remove,
+        remove: remove,
 
-        check
+        check: check
 
     };
 
+    console.log(
+        "EduPath Ghana favourites system initialized."
+    );
 
 })();
