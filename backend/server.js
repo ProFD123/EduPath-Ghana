@@ -152,10 +152,10 @@ app.post(
 // ADMIN AUTHENTICATION
 // ==================================================
 
-const ADMIN_USERNAME = "admin";
+const ADMIN_USERNAME = process.ev.ADMIN_USERNAME;
 
-const ADMIN_PASSWORD =
-    "EduPathAdmin2026!";
+const ADMIN_PASSWORD = process.ev.ADMIN_PASSWORD;
+
 
 
 app.post(
