@@ -33,7 +33,7 @@ app.use(
 
 app.use(
     session({
-        secret: process.evn.SESSION_SECRET,
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
@@ -152,9 +152,9 @@ app.post(
 // ADMIN AUTHENTICATION
 // ==================================================
 
-const ADMIN_USERNAME = process.ev.ADMIN_USERNAME;
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
 
-const ADMIN_PASSWORD = process.ev.ADMIN_PASSWORD;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 
 
