@@ -33,7 +33,7 @@ app.use(
 
 app.use(
     session({
-        secret: process.ev.SESSION_SECRET,
+        secret: process.evn.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
