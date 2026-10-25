@@ -33,7 +33,7 @@ app.use(
 
 app.use(
     session({
-        secret: "edupath-ghana-secret-2026",
+        secret: process.ev.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         cookie: {
