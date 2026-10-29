@@ -779,23 +779,41 @@
         startQuiz(button.dataset.subject);
       });
     });
+ function startQuiz(subject) {
+    currentSubject = subject;
 
-    function startQuiz(subject) {
-      currentSubject = subject;
-      questions = questionBank[subject];
-      currentIndex = 0;
-      score = 0;
-      timeLeft = 60;
-      answered = false;
-      quizFinished = false;
+    // Create a shuffled copy of the subject's questions
+    questions = [...questionBank[subject]];
 
-      selection.classList.add("hidden");
-      results.classList.add("hidden");
-      quiz.classList.remove("hidden");
+    // Randomize question order
+    for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
 
-      subjectLabel.textContent = subject;
-      nextButton.textContent = "Next question →";
+        [questions[i], questions[j]] =
+            [questions[j], questions[i]];
+    }
 
+    currentIndex = 0;
+    score = 0;
+    timeLeft = 60;
+    answered = false;
+    quizFinished = false;
+
+    selection.classList.add("hidden");
+    results.classList.add("hidden");
+    quiz.classList.remove("hidden");
+
+    subjectLabel.textContent = subject;
+    nextButton.textContent = "Next question →";
+
+    renderQuestion();
+    startTimer();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+    }
       renderQuestion();
       startTimer();
       window.scrollTo({ top: 0, behavior: "smooth" });
