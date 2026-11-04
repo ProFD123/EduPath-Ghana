@@ -214,7 +214,25 @@ footer {
         </div>
 
     </div>
+    <section id="subjectSection" style="display:none; margin-top:45px;">
+    <div class="section-title">
+        <h2 id="examTitle">Choose a Subject</h2>
+        <p>Select a subject to continue your preparation.</p>
+    </div>
 
+    <div class="exam-grid" id="subjectGrid"></div>
+
+    <button onclick="goBack()" style="
+        margin-top:25px;
+        padding:12px 20px;
+        background:#092c55;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;">
+        ← Back to Examinations
+    </button>
+    </section>
     <div class="notice">
         <strong>📢 Your learning journey matters!</strong><br>
         Practise consistently, learn from your mistakes
@@ -228,9 +246,90 @@ footer {
 </footer>
 
 <script>
+<script>
+const subjects = {
+    "BECE": [
+        "Mathematics",
+        "English Language",
+        "Integrated Science",
+        "Social Studies",
+        "Computing",
+        "French"
+    ],
+
+    "WASSCE": [
+        "Core Mathematics",
+        "English Language",
+        "Integrated Science",
+        "Social Studies",
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "Elective Mathematics",
+        "Economics",
+        "Geography",
+        "Government",
+        "ICT"
+    ],
+
+    "University Entrance": [
+        "Mathematics",
+        "English Language",
+        "Logical Reasoning",
+        "General Knowledge"
+    ]
+};
+
 function selectExam(exam) {
-    alert(exam + " preparation will be available here soon!");
+    const examGrid = document.querySelector(".exam-grid");
+    const subjectSection = document.getElementById("subjectSection");
+    const subjectGrid = document.getElementById("subjectGrid");
+    const examTitle = document.getElementById("examTitle");
+
+    examGrid.style.display = "none";
+    subjectSection.style.display = "block";
+
+    examTitle.textContent = exam + " Subjects";
+
+    subjectGrid.innerHTML = "";
+
+    subjects[exam].forEach(subject => {
+        const card = document.createElement("div");
+
+        card.className = "exam-card";
+
+        card.innerHTML = `
+            <div class="exam-icon">📚</div>
+            <h3>${subject}</h3>
+            <p>Practise questions and strengthen your understanding of ${subject}.</p>
+            <button onclick="selectSubject('${subject}')">
+                Practise Subject →
+            </button>
+        `;
+
+        subjectGrid.appendChild(card);
+    });
+
+    subjectSection.scrollIntoView({
+        behavior: "smooth"
+    });
 }
+
+function goBack() {
+    document.querySelector(".exam-grid").style.display = "grid";
+
+    document.getElementById("subjectSection").style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function selectSubject(subject) {
+    alert(subject + " practice will be available in the next stage!");
+}
+</script>
 </script>
 
 </body>
