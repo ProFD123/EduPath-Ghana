@@ -4,369 +4,230 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Practice Arena | EduPath Ghana</title>
-
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #f4f7fb;
-    color: #17243a;
-}
-
-header {
-    background: #092c55;
-    color: white;
-    padding: 18px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 23px;
-    font-weight: bold;
-}
-
-.logo span {
-    color: #36d399;
-}
-
-header a {
-    color: white;
-    text-decoration: none;
-}
-
-.hero {
-    background: linear-gradient(120deg, #092c55, #1264a3);
-    color: white;
-    padding: 65px 7%;
-}
-
-.hero h1 {
-    font-size: 36px;
-    margin-bottom: 15px;
-}
-
-.hero p {
-    max-width: 600px;
-    line-height: 1.7;
-    color: #d9e8f7;
-}
-
-.container {
-    padding: 40px 7%;
-}
-
-.section-title {
-    margin-bottom: 25px;
-}
-
-.section-title h2 {
-    font-size: 25px;
-    margin-bottom: 8px;
-}
-
-.section-title p {
-    color: #68778b;
-}
-
-.exam-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 22px;
-}
-
-.exam-card {
-    background: white;
-    padding: 27px;
-    border-radius: 15px;
-    border: 1px solid #e5eaf0;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.04);
-    transition: 0.2s;
-}
-
-.exam-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.09);
-}
-
-.exam-icon {
-    font-size: 38px;
-    margin-bottom: 18px;
-}
-
-.exam-card h3 {
-    margin-bottom: 10px;
-}
-
-.exam-card p {
-    color: #68778b;
-    line-height: 1.6;
-    font-size: 14px;
-    min-height: 65px;
-}
-
-.exam-card button {
-    width: 100%;
-    margin-top: 20px;
-    padding: 13px;
-    background: #0c5da8;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.exam-card button:hover {
-    background: #083e73;
-}
-
-.back-button {
-    margin-top: 25px;
-    padding: 12px 20px;
-    background: #092c55;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.notice {
-    margin-top: 35px;
-    background: #e8f4ff;
-    border-left: 4px solid #1682d4;
-    padding: 18px;
-    border-radius: 8px;
-    color: #25496b;
-    line-height: 1.6;
-}
-
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #718096;
-    font-size: 14px;
-}
-
-@media(max-width: 600px) {
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .container {
-        padding: 30px 5%;
-    }
-}
+:root{--navy:#092c55;--blue:#0c5da8;--green:#20b981;--bg:#f4f7fb;--ink:#17243a;--muted:#68778b;--line:#e5eaf0;--white:#fff;--red:#d94848}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:var(--bg);color:var(--ink);line-height:1.5}
+header{background:var(--navy);color:white;padding:16px 7%;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.logo{font-size:22px;font-weight:800}.logo span{color:#36d399}header a{color:white;text-decoration:none}
+.hero{background:linear-gradient(120deg,#092c55,#1264a3);color:white;padding:52px 7%}
+.hero h1{font-size:clamp(27px,4vw,38px);margin-bottom:10px}.hero p{max-width:680px;color:#d9e8f7}
+.container{padding:35px 7%;max-width:1400px;margin:auto}
+.section-title{margin-bottom:22px}.section-title h2{font-size:25px;margin-bottom:5px}.section-title p,.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:white;padding:23px;border:1px solid var(--line);border-radius:14px;box-shadow:0 5px 18px #00000008}
+.card h3{margin:8px 0}.card p{color:var(--muted);font-size:14px;min-height:48px}
+.icon{font-size:32px}.btn{border:0;border-radius:8px;padding:12px 17px;background:var(--blue);color:white;font-weight:700;cursor:pointer}
+.btn:hover{filter:brightness(.9)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.secondary{background:#e8f1fa;color:var(--navy)}.btn.dark{background:var(--navy)}.btn.green{background:#12845f}.btn.red{background:var(--red)}
+.card .btn{width:100%;margin-top:16px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hidden{display:none!important}.notice{background:#e8f4ff;border-left:4px solid #1682d4;padding:15px;border-radius:8px;margin-top:25px;color:#25496b}
+.pill{display:inline-block;background:#e8f1fa;color:var(--navy);padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+select,input[type=number]{padding:11px;border:1px solid var(--line);border-radius:8px;background:white}
+.topic-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:18px 0}
+.topic{background:white;border:1px solid var(--line);padding:13px;border-radius:9px;cursor:pointer;text-align:left}
+.topic.active{border:2px solid var(--blue);background:#eef6ff}
+.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:20px;align-items:start}
+.question-box{background:white;padding:25px;border:1px solid var(--line);border-radius:14px}
+.question-text{font-size:19px;font-weight:700;margin:22px 0}
+.option{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:9px;margin:10px 0;cursor:pointer}
+.option:hover{background:#f5f9ff}.option input{margin-top:5px}
+.option.selected{border-color:var(--blue);background:#eef6ff}
+.question-nav{background:white;border:1px solid var(--line);border-radius:14px;padding:18px}
+.number-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:15px 0}
+.qnum{padding:9px 0;border:1px solid var(--line);border-radius:7px;background:white;cursor:pointer}
+.qnum.current{border:2px solid var(--blue)}.qnum.answered{background:#dff6eb;border-color:#80d4ae}.qnum.review{outline:2px solid #e4a52c}
+.progress{height:8px;background:#e6edf4;border-radius:9px;overflow:hidden;margin:12px 0}.progress div{height:100%;background:var(--green);width:0}
+.timer{font-weight:800;color:var(--red);font-size:20px}
+.result-score{font-size:42px;font-weight:800;color:var(--navy)}
+.review-item{background:white;border:1px solid var(--line);border-radius:10px;padding:17px;margin:12px 0}
+.correct{color:#12845f;font-weight:700}.incorrect{color:#c43d3d;font-weight:700}
+footer{text-align:center;padding:25px;color:#718096;font-size:14px}
+@media(max-width:800px){.exam-layout{grid-template-columns:1fr}.question-nav{order:-1}.number-grid{grid-template-columns:repeat(8,1fr)}}
+@media(max-width:600px){header{padding:15px 5%}.hero{padding:40px 5%}.container{padding:28px 5%}.question-box{padding:17px}.number-grid{grid-template-columns:repeat(5,1fr)}}
 </style>
 </head>
-
 <body>
-
-<header>
-    <div class="logo">EduPath <span>Ghana</span></div>
-    <a href="index.html">← Home</a>
-</header>
-
-<section class="hero">
-    <h1>Welcome to the Practice Arena</h1>
-    <p>
-        Your journey towards academic excellence starts here.
-        Practise questions, prepare for examinations and
-        build confidence with EduPath Ghana.
-    </p>
-</section>
-
+<header><div class="logo">EduPath <span>Ghana</span></div><a href="index.html">← Home</a></header>
+<section class="hero"><h1>Practice Arena</h1><p>Practise smarter, master topics and prepare for your examinations with structured exercises and mock examinations.</p></section>
 <main class="container">
-
-    <div class="section-title">
-        <h2>Choose your examination</h2>
-        <p>Select the examination you are preparing for.</p>
-    </div>
-
-    <div class="exam-grid" id="examGrid">
-
-        <div class="exam-card">
-            <div class="exam-icon">📘</div>
-            <h3>BECE Preparation</h3>
-            <p>
-                Strengthen your understanding of core JHS subjects
-                and prepare for your Basic Education Certificate Examination.
-            </p>
-            <button onclick="selectExam('BECE')">
-                Start BECE Practice →
-            </button>
-        </div>
-
-        <div class="exam-card">
-            <div class="exam-icon">📕</div>
-            <h3>WASSCE Preparation</h3>
-            <p>
-                Improve your examination skills with practice
-                across core and elective subjects.
-            </p>
-            <button onclick="selectExam('WASSCE')">
-                Start WASSCE Practice →
-            </button>
-        </div>
-
-        <div class="exam-card">
-            <div class="exam-icon">🎓</div>
-            <h3>University Entrance</h3>
-            <p>
-                Prepare for university admission assessments
-                with relevant practice exercises.
-            </p>
-            <button onclick="selectExam('University Entrance')">
-                Start Preparation →
-            </button>
-        </div>
-
-    </div>
-
-    <section id="subjectSection" style="display:none; margin-top:45px;">
-
-        <div class="section-title">
-            <h2 id="examTitle">Choose a Subject</h2>
-            <p>Select a subject to continue your preparation.</p>
-        </div>
-
-        <div class="exam-grid" id="subjectGrid"></div>
-
-        <button class="back-button" onclick="goBack()">
-            ← Back to Examinations
-        </button>
-
-    </section>
-
-    <div class="notice">
-        <strong>📢 Your learning journey matters!</strong><br>
-        Practise consistently, learn from your mistakes
-        and track your progress as you prepare for your examinations.
-    </div>
-
+<section id="examScreen">
+ <div class="section-title"><h2>Choose your examination</h2><p>Select the examination you are preparing for.</p></div>
+ <div class="grid" id="examGrid"></div>
+</section>
+<section id="subjectScreen" class="hidden">
+ <div class="row"><div class="section-title"><h2 id="subjectHeading">Choose a subject</h2><p>Select a subject to continue.</p></div><button class="btn secondary" onclick="showScreen('examScreen')">← Examinations</button></div>
+ <div class="grid" id="subjectGrid"></div>
+</section>
+<section id="modeScreen" class="hidden">
+ <div class="row"><div class="section-title"><h2 id="modeHeading">Choose your practice mode</h2><p>Choose how you want to practise this subject.</p></div><button class="btn secondary" onclick="showScreen('subjectScreen')">← Subjects</button></div>
+ <div class="grid">
+  <article class="card"><div class="icon">⚡</div><h3>Quick Practice</h3><p>Answer 10 randomly selected questions and get instant feedback at the end.</p><button class="btn" onclick="startQuick()">Start Quick Practice</button></article>
+  <article class="card"><div class="icon">📚</div><h3>Topic Practice</h3><p>Focus on a particular area and strengthen your understanding step by step.</p><button class="btn" onclick="openTopics()">Choose a Topic</button></article>
+  <article class="card"><div class="icon">📝</div><h3>Mock Examination</h3><p>Attempt a timed examination with question navigation and review marking.</p><button class="btn" onclick="startMock()">Start Mock Exam</button></article>
+ </div>
+ <div class="notice">Your attempts on this version are saved in this browser. Connect the backend to securely save results to student accounts.</div>
+</section>
+<section id="topicScreen" class="hidden">
+ <div class="row"><div class="section-title"><h2>Choose a topic</h2><p id="topicSubject"></p></div><button class="btn secondary" onclick="showScreen('modeScreen')">← Practice modes</button></div>
+ <div class="topic-list" id="topicList"></div><button class="btn" onclick="startTopic()">Start Topic Practice</button>
+</section>
+<section id="quizScreen" class="hidden">
+ <div class="row"><div><span class="pill" id="quizModeLabel"></span><h2 id="quizHeading" style="margin-top:8px"></h2></div><div class="timer" id="timerBox">--:--</div></div>
+ <div class="progress"><div id="progressBar"></div></div>
+ <div class="exam-layout">
+  <div class="question-box">
+   <div class="row"><span class="muted" id="questionCount"></span><span class="pill" id="topicLabel"></span></div>
+   <div class="question-text" id="questionText"></div>
+   <div id="options"></div>
+   <div class="toolbar">
+    <button class="btn secondary" onclick="previousQuestion()">← Previous</button>
+    <button class="btn secondary" onclick="toggleReview()">⚑ Mark for review</button>
+    <button class="btn" id="nextBtn" onclick="nextQuestion()">Next →</button>
+    <button class="btn green hidden" id="submitBtn" onclick="submitQuiz()">Submit</button>
+   </div>
+   <p class="muted" id="feedback"></p>
+  </div>
+  <aside class="question-nav"><h3>Question navigation</h3><p class="muted" style="font-size:13px">Green = answered; gold outline = marked for review.</p><div class="number-grid" id="numberGrid"></div><button class="btn red" style="width:100%" onclick="submitQuiz()">Submit examination</button></aside>
+ </div>
+</section>
+<section id="resultScreen" class="hidden">
+ <div class="section-title"><h2>Practice results</h2><p>Your performance summary and corrections.</p></div>
+ <div class="card">
+  <div class="row"><div><div class="muted">Your score</div><div class="result-score" id="scoreText">0/0</div><div id="percentText"></div></div><div><span class="pill" id="resultMode"></span><p class="muted" id="resultSubject" style="margin-top:8px"></p></div></div>
+  <div class="progress"><div id="resultBar"></div></div>
+  <p id="resultMessage"></p>
+  <div class="toolbar"><button class="btn" onclick="retryQuiz()">Try Again</button><button class="btn secondary" onclick="showScreen('modeScreen')">Back to Practice Modes</button><button class="btn secondary" onclick="showHistory()">My Attempts</button></div>
+ </div>
+ <h3 style="margin:25px 0 10px">Corrections and explanations</h3><div id="corrections"></div>
+</section>
+<section id="historyScreen" class="hidden">
+ <div class="row"><div class="section-title"><h2>My attempts</h2><p>Results saved on this device.</p></div><button class="btn secondary" onclick="showScreen('resultScreen')">← Results</button></div>
+ <div id="historyList"></div>
+</section>
 </main>
-
-<footer>
-    © 2026 EduPath Ghana. All rights reserved.
-</footer>
-
+<footer>© 2026 EduPath Ghana. All rights reserved.</footer>
 <script>
-
-const subjects = {
-    "BECE": [
-        "Mathematics",
-        "English Language",
-        "Integrated Science",
-        "Social Studies",
-        "Computing",
-        "French"
-    ],
-
-    "WASSCE": [
-        "Core Mathematics",
-        "English Language",
-        "Integrated Science",
-        "Social Studies",
-        "Biology",
-        "Chemistry",
-        "Physics",
-        "Elective Mathematics",
-        "Economics",
-        "Geography",
-        "Government",
-        "ICT"
-    ],
-
-    "University Entrance": [
-        "Mathematics",
-        "English Language",
-        "Logical Reasoning",
-        "General Knowledge"
-    ]
+const subjects={
+ "BECE":["Mathematics","English Language","Integrated Science","Social Studies","Computing","French"],
+ "WASSCE":["Core Mathematics","English Language","Integrated Science","Social Studies","Biology","Chemistry","Physics","Elective Mathematics","Economics","Geography","Government","ICT"],
+ "University Entrance":["Mathematics","English Language","Logical Reasoning","General Knowledge"]
 };
-
-function selectExam(exam) {
-
-    const examGrid = document.getElementById("examGrid");
-    const subjectSection = document.getElementById("subjectSection");
-    const subjectGrid = document.getElementById("subjectGrid");
-    const examTitle = document.getElementById("examTitle");
-
-    if (!subjects[exam]) {
-        alert("Examination not found.");
-        return;
-    }
-
-    examGrid.style.display = "none";
-    subjectSection.style.display = "block";
-
-    examTitle.textContent = exam + " Subjects";
-
-    subjectGrid.innerHTML = "";
-
-    subjects[exam].forEach(subject => {
-
-        const card = document.createElement("div");
-
-        card.className = "exam-card";
-
-        const icon = document.createElement("div");
-        icon.className = "exam-icon";
-        icon.textContent = "📚";
-
-        const heading = document.createElement("h3");
-        heading.textContent = subject;
-
-        const description = document.createElement("p");
-        description.textContent =
-            "Practise questions and strengthen your understanding of " + subject + ".";
-
-        const button = document.createElement("button");
-        button.textContent = "Practise Subject →";
-
-        button.addEventListener("click", function() {
-            selectSubject(subject);
-        });
-
-        card.appendChild(icon);
-        card.appendChild(heading);
-        card.appendChild(description);
-        card.appendChild(button);
-
-        subjectGrid.appendChild(card);
-
-    });
-
-    subjectSection.scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
-function goBack() {
-
-    document.getElementById("examGrid").style.display = "grid";
-
-    document.getElementById("subjectSection").style.display = "none";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-function selectSubject(subject) {
-
-    alert(subject + " practice will be available in the next stage!");
-
-}
-
+const topicMap={
+ "Mathematics":["Number","Fractions and decimals","Algebra","Geometry","Mensuration","Statistics"],
+ "Core Mathematics":["Number","Algebra","Geometry","Trigonometry","Calculus","Statistics and probability"],
+ "English Language":["Comprehension","Grammar","Vocabulary","Summary","Writing"],
+ "Integrated Science":["Living things","Human body","Matter","Energy","Environment"],
+ "Biology":["Cell biology","Nutrition","Transport","Ecology","Genetics"],
+ "Chemistry":["Atomic structure","Chemical bonding","Acids and bases","Rates of reaction","Organic chemistry"],
+ "Physics":["Measurement","Mechanics","Waves","Electricity","Heat"],
+ "Social Studies":["Environment","Governance","National development","Map reading"],
+ "Computing":["Computer systems","Internet","Data and information","Digital safety"],
+ "ICT":["Computer systems","Networking","Data processing","Digital safety"],
+ "French":["Vocabulary","Grammar","Comprehension"],
+ "Elective Mathematics":["Algebra","Trigonometry","Calculus","Vectors","Statistics"],
+ "Economics":["Demand and supply","Production","Markets","National income"],
+ "Geography":["Map work","Weather and climate","Rivers","Population"],
+ "Government":["Constitution","Arms of government","Elections","Citizenship"],
+ "Logical Reasoning":["Number patterns","Sequences","Deduction","Verbal reasoning"],
+ "General Knowledge":["Ghana","Africa","World knowledge","Science and technology"]
+};
+// Sample starter bank. Add reviewed, curriculum-aligned questions before public launch.
+const bank={
+ "Mathematics":[
+ {topic:"Number",q:"Evaluate 3/4 + 1/2.",o:["1","5/4","4/6","3/8"],a:1,e:"Convert 1/2 to 2/4. Then 3/4 + 2/4 = 5/4."},
+ {topic:"Algebra",q:"Solve 2x + 5 = 15.",o:["4","5","6","10"],a:1,e:"Subtract 5 from both sides: 2x = 10, so x = 5."},
+ {topic:"Geometry",q:"What is the sum of the interior angles of a triangle?",o:["90°","180°","270°","360°"],a:1,e:"The interior angles of every Euclidean triangle sum to 180°."},
+ {topic:"Statistics",q:"Find the mean of 2, 4, 6 and 8.",o:["4","5","6","20"],a:1,e:"The sum is 20; divide by 4 values to get 5."},
+ {topic:"Mensuration",q:"Find the area of a rectangle 7 cm long and 3 cm wide.",o:["10 cm²","20 cm²","21 cm²","24 cm²"],a:2,e:"Area = length × width = 7 × 3 = 21 cm²."},
+ {topic:"Number",q:"What is 15% of 200?",o:["15","20","30","45"],a:2,e:"15/100 × 200 = 30."},
+ {topic:"Algebra",q:"If y = 3x and x = 4, find y.",o:["7","9","12","16"],a:2,e:"Substitute x = 4: y = 3 × 4 = 12."},
+ {topic:"Geometry",q:"A right angle is equal to:",o:["45°","90°","180°","360°"],a:1,e:"A right angle measures exactly 90°."},
+ {topic:"Number",q:"Express 0.25 as a fraction in its simplest form.",o:["1/2","1/3","1/4","2/5"],a:2,e:"0.25 = 25/100 = 1/4."},
+ {topic:"Statistics",q:"Which measure is the middle value of an ordered data set?",o:["Mean","Median","Mode","Range"],a:1,e:"The median is the middle value after arranging the data in order."},
+ {topic:"Trigonometry",q:"In a right-angled triangle, sin θ is:",o:["Adjacent/Hypotenuse","Opposite/Hypotenuse","Opposite/Adjacent","Hypotenuse/Opposite"],a:1,e:"Sine is the ratio of the opposite side to the hypotenuse."},
+ {topic:"Calculus",q:"Differentiate x² with respect to x.",o:["x","2x","2","x³"],a:1,e:"Using the power rule, d(x²)/dx = 2x."}
+ ],
+ "Core Mathematics":[],
+ "English Language":[
+ {topic:"Grammar",q:"Choose the correctly written sentence.",o:["She go to school daily.","She goes to school daily.","She going to school daily.","She gone to school daily."],a:1,e:"The singular subject 'she' takes 'goes' in the simple present tense."},
+ {topic:"Vocabulary",q:"Choose the word closest in meaning to 'rapid'.",o:["Slow","Quick","Weak","Late"],a:1,e:"Rapid means fast or quick."},
+ {topic:"Grammar",q:"What is the plural form of 'criterion'?",o:["Criterions","Criteria","Criterias","Criterion"],a:1,e:"The standard plural form of criterion is criteria."},
+ {topic:"Comprehension",q:"A passage's main idea is its:",o:["Central message","Longest sentence","Final word","List of names"],a:0,e:"The main idea is the central point the passage communicates."}
+ ],
+ "Integrated Science":[
+ {topic:"Living things",q:"Which process do green plants use to make food?",o:["Respiration","Photosynthesis","Transpiration","Germination"],a:1,e:"Photosynthesis uses light energy to make food from carbon dioxide and water."},
+ {topic:"Matter",q:"Which state of matter has a fixed volume but no fixed shape?",o:["Solid","Liquid","Gas","Plasma"],a:1,e:"A liquid has a fixed volume and takes the shape of its container."},
+ {topic:"Energy",q:"The SI unit of energy is the:",o:["Watt","Newton","Joule","Pascal"],a:2,e:"Energy is measured in joules (J)."}
+ ],
+ "Biology":[
+ {topic:"Cell biology",q:"Which organelle is the main site of aerobic respiration?",o:["Ribosome","Mitochondrion","Nucleus","Vacuole"],a:1,e:"Mitochondria are the main sites of aerobic respiration in eukaryotic cells."}
+ ],
+ "Chemistry":[
+ {topic:"Acids and bases",q:"A solution with pH 2 is best described as:",o:["Acidic","Neutral","Alkaline","Pure water"],a:0,e:"A pH below 7 indicates an acidic solution."}
+ ],
+ "Physics":[
+ {topic:"Mechanics",q:"What is the SI unit of force?",o:["Joule","Watt","Newton","Pascal"],a:2,e:"Force is measured in newtons (N)."}
+ ],
+ "Social Studies":[
+ {topic:"Governance",q:"Which arm of government is primarily responsible for interpreting laws?",o:["Executive","Legislature","Judiciary","Civil service"],a:2,e:"The judiciary interprets laws and adjudicates disputes."}
+ ],
+ "Computing":[
+ {topic:"Computer systems",q:"Which component is often called the brain of the computer?",o:["Monitor","CPU","Keyboard","Speaker"],a:1,e:"The CPU processes instructions and controls computer operations."}
+ ],
+ "ICT":[
+ {topic:"Computer systems",q:"What does CPU stand for?",o:["Central Processing Unit","Computer Personal Utility","Central Program User","Control Power Unit"],a:0,e:"CPU stands for Central Processing Unit."}
+ ],
+ "French":[
+ {topic:"Vocabulary",q:"What does the French word 'bonjour' mean?",o:["Goodbye","Good morning/hello","Thank you","Please"],a:1,e:"Bonjour is a common French greeting meaning hello or good day."}
+ ],
+ "Elective Mathematics":[],
+ "Economics":[
+ {topic:"Demand and supply",q:"According to the law of demand, other things being equal, when price rises quantity demanded generally:",o:["Rises","Falls","Stays fixed always","Becomes zero"],a:1,e:"The law of demand describes an inverse relationship between price and quantity demanded, other things equal."}
+ ],
+ "Geography":[
+ {topic:"Weather and climate",q:"The average weather condition of a place over a long period is called:",o:["Weather","Climate","Season","Forecast"],a:1,e:"Climate describes average atmospheric conditions over a long period."}
+ ],
+ "Government":[
+ {topic:"Arms of government",q:"Which arm of government makes laws?",o:["Executive","Legislature","Judiciary","Police"],a:1,e:"The legislature is responsible for making laws."}
+ ],
+ "Logical Reasoning":[
+ {topic:"Number patterns",q:"What number comes next: 2, 4, 6, 8, ...?",o:["9","10","11","12"],a:1,e:"The sequence increases by 2 each time."}
+ ],
+ "General Knowledge":[
+ {topic:"Ghana",q:"What is the capital city of Ghana?",o:["Kumasi","Tamale","Accra","Cape Coast"],a:2,e:"Accra is the capital city of Ghana."}
+ ]
+};
+bank["Core Mathematics"]=bank["Mathematics"].map(q=>({...q}));
+bank["Elective Mathematics"]=bank["Mathematics"].filter(q=>["Algebra","Trigonometry","Calculus","Statistics"].includes(q.topic)).map(q=>({...q}));
+let exam="",subject="",mode="",topic="",questions=[],answers={},review=new Set(),index=0,seconds=0,timer=null,lastConfig={};
+const $=id=>document.getElementById(id);
+function showScreen(id){["examScreen","subjectScreen","modeScreen","topicScreen","quizScreen","resultScreen","historyScreen"].forEach(x=>$(x).classList.toggle("hidden",x!==id));window.scrollTo({top:0,behavior:"smooth"});}
+function shuffle(arr){let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function renderExams(){const icons={"BECE":"📘","WASSCE":"📕","University Entrance":"🎓"};$("examGrid").innerHTML=Object.keys(subjects).map(x=>`<article class="card"><div class="icon">${icons[x]}</div><h3>${x} Preparation</h3><p>Practise relevant subjects and build confidence for your examination.</p><button class="btn" onclick="chooseExam('${x}')">Choose ${x} →</button></article>`).join("");}
+function chooseExam(x){exam=x;$("subjectHeading").textContent=x+" Subjects";$("subjectGrid").innerHTML=subjects[x].map(s=>`<article class="card"><div class="icon">📚</div><h3>${s}</h3><p>Practise questions and strengthen your understanding of ${s}.</p><button class="btn" onclick="chooseSubject('${s.replace(/'/g,"\\'")}')">Select Subject →</button></article>`).join("");showScreen("subjectScreen");}
+function chooseSubject(s){subject=s;$("modeHeading").textContent=subject+" Practice";showScreen("modeScreen");}
+function getBank(){return bank[subject]||[];}
+function begin(kind,qs,duration){if(!qs.length){alert("There are no questions available for this selection yet. More questions will be added.");return;}mode=kind;questions=qs.map(q=>({...q}));answers={};review=new Set();index=0;seconds=duration;$("quizHeading").textContent=subject;$("quizModeLabel").textContent=kind;$("timerBox").classList.toggle("hidden",!duration);lastConfig={kind,topic,duration};renderQuestion();showScreen("quizScreen");if(timer)clearInterval(timer);if(duration){updateTimer();timer=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearInterval(timer);submitQuiz(true);}},1000);}else $("timerBox").textContent="No timer";}
+function startQuick(){topic="";begin("Quick Practice",shuffle(getBank()).slice(0,10),0);}
+function openTopics(){let list=topicMap[subject]||["General practice"];$("topicSubject").textContent=subject;$("topicList").innerHTML=list.map((t,i)=>`<button class="topic ${i===0?"active":""}" onclick="pickTopic(this,'${t.replace(/'/g,"\\'")}')">${t}</button>`).join("");topic=list[0];showScreen("topicScreen");}
+function pickTopic(el,t){document.querySelectorAll(".topic").forEach(x=>x.classList.remove("active"));el.classList.add("active");topic=t;}
+function startTopic(){let qs=getBank().filter(q=>q.topic===topic);if(!qs.length){alert("There are no questions for this topic yet. Please choose another topic or check back later.");return;}begin("Topic Practice",shuffle(qs),0);}
+function startMock(){let qs=shuffle(getBank()).slice(0,Math.min(20,getBank().length));begin("Mock Examination",qs,Math.max(1,qs.length)*60);}
+function updateTimer(){let m=Math.floor(seconds/60),s=seconds%60;$("timerBox").textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
+function renderQuestion(){let q=questions[index];$("questionCount").textContent=`Question ${index+1} of ${questions.length}`;$("topicLabel").textContent=q.topic||"General";$("questionText").textContent=q.q;$("progressBar").style.width=((index+1)/questions.length*100)+"%";$("options").innerHTML=q.o.map((o,i)=>`<label class="option ${answers[index]===i?"selected":""}"><input type="radio" name="answer" value="${i}" ${answers[index]===i?"checked":""} onchange="saveAnswer(${i})"><span><strong>${String.fromCharCode(65+i)}.</strong> ${o}</span></label>`).join("");$("feedback").textContent="";$("nextBtn").classList.toggle("hidden",index===questions.length-1);$("submitBtn").classList.toggle("hidden",index!==questions.length-1);renderNav();}
+function saveAnswer(i){answers[index]=i;renderQuestion();}
+function renderNav(){$("numberGrid").innerHTML=questions.map((q,i)=>`<button class="qnum ${i===index?"current":""} ${answers[i]!==undefined?"answered":""} ${review.has(i)?"review":""}" onclick="jumpTo(${i})">${i+1}</button>`).join("");}
+function jumpTo(i){index=i;renderQuestion();}
+function previousQuestion(){if(index>0){index--;renderQuestion();}}
+function nextQuestion(){if(index<questions.length-1){index++;renderQuestion();}}
+function toggleReview(){if(review.has(index))review.delete(index);else review.add(index);renderNav();}
+function submitQuiz(auto=false){if(!questions.length)return;if(!auto&&!confirm("Submit your practice and view your results?"))return;if(timer)clearInterval(timer);let score=questions.reduce((n,q,i)=>n+(answers[i]===q.a?1:0),0);let percent=Math.round(score/questions.length*100);$("scoreText").textContent=score+"/"+questions.length;$("percentText").textContent=percent+"%";$("resultBar").style.width=percent+"%";$("resultMode").textContent=mode;$("resultSubject").textContent=exam+" • "+subject;$("resultMessage").textContent=auto?"Time is up. Your examination has been submitted.":percent>=80?"Excellent work. Keep practising to maintain your progress.":percent>=50?"Good effort. Review the explanations and practise again.":"Keep learning. Study the corrections and try another practice.";let date=new Date().toLocaleString();let record={exam,subject,mode,score,total:questions.length,percent,date};let history=JSON.parse(localStorage.getItem("edupathPracticeHistory")||"[]");history.unshift(record);localStorage.setItem("edupathPracticeHistory",JSON.stringify(history.slice(0,50)));$("corrections").innerHTML=questions.map((q,i)=>{let ok=answers[i]===q.a;return `<article class="review-item"><div class="row"><strong>Question ${i+1}</strong><span class="${ok?"correct":"incorrect"}">${ok?"Correct":"Incorrect / unanswered"}</span></div><p style="margin:10px 0">${q.q}</p><p>Your answer: ${answers[i]===undefined?"Not answered":q.o[answers[i]]}</p><p class="correct">Correct answer: ${q.o[q.a]}</p><p class="muted" style="margin-top:7px">Explanation: ${q.e||"Review this concept in your notes."}</p></article>`}).join("");showScreen("resultScreen");}
+function retryQuiz(){let c=lastConfig;if(c.kind==="Topic Practice"){let qs=getBank().filter(q=>q.topic===topic);begin(c.kind,shuffle(qs),0);}else if(c.kind==="Mock Examination")startMock();else startQuick();}
+function showHistory(){let h=JSON.parse(localStorage.getItem("edupathPracticeHistory")||"[]");$("historyList").innerHTML=h.length?h.map(x=>`<article class="review-item"><div class="row"><strong>${x.exam} • ${x.subject}</strong><span class="pill">${x.percent}%</span></div><p>${x.mode}: ${x.score}/${x.total}</p><p class="muted">${x.date}</p></article>`).join(""):"<p class='muted'>No attempts have been saved on this device yet.</p>";showScreen("historyScreen");}
+renderExams();
 </script>
-
 </body>
-</html>
+    </html>
