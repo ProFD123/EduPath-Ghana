@@ -127,6 +127,16 @@ header a {
     background: #083e73;
 }
 
+.back-button {
+    margin-top: 25px;
+    padding: 12px 20px;
+    background: #092c55;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 .notice {
     margin-top: 35px;
     background: #e8f4ff;
@@ -147,6 +157,10 @@ footer {
 @media(max-width: 600px) {
     .hero h1 {
         font-size: 28px;
+    }
+
+    .container {
+        padding: 30px 5%;
     }
 }
 </style>
@@ -175,7 +189,7 @@ footer {
         <p>Select the examination you are preparing for.</p>
     </div>
 
-    <div class="exam-grid">
+    <div class="exam-grid" id="examGrid">
 
         <div class="exam-card">
             <div class="exam-icon">📘</div>
@@ -214,25 +228,22 @@ footer {
         </div>
 
     </div>
+
     <section id="subjectSection" style="display:none; margin-top:45px;">
-    <div class="section-title">
-        <h2 id="examTitle">Choose a Subject</h2>
-        <p>Select a subject to continue your preparation.</p>
-    </div>
 
-    <div class="exam-grid" id="subjectGrid"></div>
+        <div class="section-title">
+            <h2 id="examTitle">Choose a Subject</h2>
+            <p>Select a subject to continue your preparation.</p>
+        </div>
 
-    <button onclick="goBack()" style="
-        margin-top:25px;
-        padding:12px 20px;
-        background:#092c55;
-        color:white;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;">
-        ← Back to Examinations
-    </button>
+        <div class="exam-grid" id="subjectGrid"></div>
+
+        <button class="back-button" onclick="goBack()">
+            ← Back to Examinations
+        </button>
+
     </section>
+
     <div class="notice">
         <strong>📢 Your learning journey matters!</strong><br>
         Practise consistently, learn from your mistakes
@@ -246,7 +257,7 @@ footer {
 </footer>
 
 <script>
-<script>
+
 const subjects = {
     "BECE": [
         "Mathematics",
@@ -281,10 +292,16 @@ const subjects = {
 };
 
 function selectExam(exam) {
-    const examGrid = document.querySelector(".exam-grid");
+
+    const examGrid = document.getElementById("examGrid");
     const subjectSection = document.getElementById("subjectSection");
     const subjectGrid = document.getElementById("subjectGrid");
     const examTitle = document.getElementById("examTitle");
+
+    if (!subjects[exam]) {
+        alert("Examination not found.");
+        return;
+    }
 
     examGrid.style.display = "none";
     subjectSection.style.display = "block";
@@ -294,20 +311,36 @@ function selectExam(exam) {
     subjectGrid.innerHTML = "";
 
     subjects[exam].forEach(subject => {
+
         const card = document.createElement("div");
 
         card.className = "exam-card";
 
-        card.innerHTML = `
-            <div class="exam-icon">📚</div>
-            <h3>${subject}</h3>
-            <p>Practise questions and strengthen your understanding of ${subject}.</p>
-            <button onclick="selectSubject('${subject}')">
-                Practise Subject →
-            </button>
-        `;
+        const icon = document.createElement("div");
+        icon.className = "exam-icon";
+        icon.textContent = "📚";
+
+        const heading = document.createElement("h3");
+        heading.textContent = subject;
+
+        const description = document.createElement("p");
+        description.textContent =
+            "Practise questions and strengthen your understanding of " + subject + ".";
+
+        const button = document.createElement("button");
+        button.textContent = "Practise Subject →";
+
+        button.addEventListener("click", function() {
+            selectSubject(subject);
+        });
+
+        card.appendChild(icon);
+        card.appendChild(heading);
+        card.appendChild(description);
+        card.appendChild(button);
 
         subjectGrid.appendChild(card);
+
     });
 
     subjectSection.scrollIntoView({
@@ -316,7 +349,8 @@ function selectExam(exam) {
 }
 
 function goBack() {
-    document.querySelector(".exam-grid").style.display = "grid";
+
+    document.getElementById("examGrid").style.display = "grid";
 
     document.getElementById("subjectSection").style.display = "none";
 
@@ -327,10 +361,12 @@ function goBack() {
 }
 
 function selectSubject(subject) {
+
     alert(subject + " practice will be available in the next stage!");
+
 }
-</script>
+
 </script>
 
 </body>
-  </html>
+</html>
