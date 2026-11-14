@@ -1,10 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#102c64">
-  <title>The Library & StudyVault | EduPath Ghana</title>
+
+  <title>EduPath Ghana | Digital Library</title>
 
   <style>
     :root {
@@ -140,10 +142,6 @@
       padding-bottom: 8px;
     }
 
-    .category-heading:first-of-type {
-      margin-top: 15px;
-    }
-
     .muted {
       color: var(--muted);
       line-height: 1.6;
@@ -156,14 +154,17 @@
     }
 
     .subject {
+      display: block;
+      width: 100%;
       border: 1px solid var(--border);
       border-radius: 14px;
       background: white;
       padding: 18px;
       text-align: left;
-      cursor: pointer;
       color: var(--text);
       transition: border-color .2s, transform .2s, background .2s;
+      text-decoration: none;
+      font: inherit;
     }
 
     .subject:hover {
@@ -185,10 +186,24 @@
 
     .subject small {
       color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .link-label {
+      display: block;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 13px;
     }
 
     button {
       font: inherit;
+    }
+
+    .coming-soon {
+      cursor: pointer;
+      text-align: left;
     }
 
     .primary {
@@ -205,16 +220,17 @@
       background: #194fc6;
     }
 
-    button:focus-visible, a:focus-visible {
+    button:focus-visible,
+    a:focus-visible {
       outline: 3px solid #70d6b0;
       outline-offset: 3px;
     }
 
-    /* Modal / Coming Soon Styles */
+    /* Modal */
+
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       background: rgba(16, 44, 100, 0.6);
@@ -223,7 +239,6 @@
       align-items: center;
       z-index: 1000;
       padding: 16px;
-      animation: fadeIn 0.2s ease-in-out;
     }
 
     .modal-card {
@@ -264,134 +279,389 @@
       padding: 25px 15px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     @media (max-width: 550px) {
       main {
         margin-top: 20px;
       }
+
       .hero {
         padding: 23px;
       }
+
       .panel {
         padding: 18px;
       }
+
       .subjects {
         grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- HEADER -->
+
   <header>
     <div class="brand">EduPath <span>Ghana</span></div>
+
     <a href="index.html">← Back to homepage</a>
   </header>
 
+
   <main>
+
+    <!-- HERO SECTION -->
+
     <section class="hero">
+
       <span class="tag">📚 READ · STUDY · MASTER</span>
+
       <h1>EduPath Library</h1>
+
       <p>
-        Access comprehensive online textbooks, syllabus handbooks, and official learner's manuals designed to support your academic journey.
+        Explore official educational resources, learner's manuals,
+        textbooks and study materials designed to support
+        your academic journey.
       </p>
 
       <div class="stats">
+
         <div class="stat">
           <strong>2</strong>
           <small>Academic Tiers</small>
         </div>
+
+        <div class="stat">
+          <strong>6</strong>
+          <small>Class Levels</small>
+        </div>
+
         <div class="stat">
           <strong>PDF</strong>
-          <small>Manuals & Books</small>
+          <small>Learning Materials</small>
         </div>
-        <div class="stat">
-          <strong>Curriculum</strong>
-          <small>Based on the new curriculum</small>
-        </div>
+
       </div>
+
     </section>
 
-    <!-- Library Panel Split into 3 Academic Tiers -->
+
+    <!-- LIBRARY PANEL -->
+
     <section id="selection" class="panel">
-      <h2 class="section-title">Explore study resources</h2>
-      <p class="muted">Select a category to view available learner's manuals and textbooks.</p>
 
-      <!-- Section 1: JHS Students -->
-      <div class="category-heading">🎒 For JHS Students (BECE Focus)</div>
+      <h2 class="section-title">
+        Explore Study Resources
+      </h2>
+
+      <p class="muted">
+        Select your academic level to access official
+        curriculum resources and learning materials.
+      </p>
+
+
+      <!-- JHS LIBRARY -->
+
+      <div class="category-heading">
+        🎒 For JHS Students (BECE Focus)
+      </div>
+
+      <p class="muted">
+        Select your class to explore JHS learner's manuals.
+      </p>
+
       <div class="subjects">
-        <button class="subject" data-resource="JHS Learner's Manuals">
+
+        <a class="subject"
+           href="https://curriculumresources.edu.gh/jhs/"
+           target="_blank"
+           rel="noopener noreferrer">
+
           <div class="icon">📘</div>
-          <strong>JHS Learner's Manuals</strong>
-          <small>BECE curriculum guidebooks</small>
-        </button>
 
-        <button class="subject" data-resource="JHS Past Questions & Answers">
+          <strong>JHS 1 Learner's Manuals</strong>
+
+          <small>
+            English, Mathematics, Science, Social Studies
+            and other curriculum resources.
+          </small>
+
+          <span class="link-label">
+            Explore JHS 1 Books →
+          </span>
+
+        </a>
+
+
+        <a class="subject"
+           href="https://curriculumresources.edu.gh/jhs/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="icon">📗</div>
+
+          <strong>JHS 2 Learner's Manuals</strong>
+
+          <small>
+            Access JHS 2 learning resources and
+            curriculum materials.
+          </small>
+
+          <span class="link-label">
+            Explore JHS 2 Books →
+          </span>
+
+        </a>
+
+
+        <a class="subject"
+           href="https://curriculumresources.edu.gh/jhs/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="icon">📕</div>
+
+          <strong>JHS 3 Learner's Manuals</strong>
+
+          <small>
+            Access JHS 3 learning materials and
+            BECE preparation resources.
+          </small>
+
+          <span class="link-label">
+            Explore JHS 3 Books →
+          </span>
+
+        </a>
+
+
+        <button class="subject coming-soon"
+                data-resource="JHS Past Questions & Answers">
+
           <div class="icon">📂</div>
+
           <strong>Past Questions Compendium</strong>
-          <small>BECE solved past papers</small>
+
+          <small>
+            BECE past questions and solved examination papers.
+          </small>
+
+          <span class="link-label">
+            Coming Soon →
+          </span>
+
         </button>
+
       </div>
 
-      <!-- Section 2: WASSCE Students -->
-      <div class="category-heading">🎓 For WASSCE Students (Senior High)</div>
+
+      <!-- SHS LIBRARY -->
+
+      <div class="category-heading">
+        🎓 For SHS Students (WASSCE Focus)
+      </div>
+
+      <p class="muted">
+        Access official SHS core and elective subject
+        learner's manuals under the new curriculum.
+      </p>
+
       <div class="subjects">
-        <button class="subject" data-resource="WASSCE Core Textbooks">
-          <div class="icon">📙</div>
-          <strong>Core Subject Textbooks</strong>
-          <small>Maths, Science, English & Social studies manuals</small>
-        </button>
 
-        <button class="subject" data-resource="WASSCE Elective Study Guides">
+        <a class="subject"
+           href="https://curriculumresources.edu.gh/year1/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="icon">📙</div>
+
+          <strong>SHS Year 1 Manuals</strong>
+
+          <small>
+            Core and elective subjects including Mathematics,
+            English, Science, Physics, Chemistry and Biology.
+          </small>
+
+          <span class="link-label">
+            Explore SHS Year 1 Books →
+          </span>
+
+        </a>
+
+
+        <a class="subject"
+           href="https://curriculumresources.edu.gh/year2/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="icon">📚</div>
+
+          <strong>SHS Year 2 Manuals</strong>
+
+          <small>
+            Access Year 2 core and elective curriculum
+            learning resources.
+          </small>
+
+          <span class="link-label">
+            Explore SHS Year 2 Books →
+          </span>
+
+        </a>
+
+
+        <a class="subject"
+           href="https://curriculumresources.edu.gh/year3/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="icon">📖</div>
+
+          <strong>SHS Year 3 Manuals</strong>
+
+          <small>
+            Access Year 3 core and elective learning
+            materials for your studies.
+          </small>
+
+          <span class="link-label">
+            Explore SHS Year 3 Books →
+          </span>
+
+        </a>
+
+
+        <a class="subject"
+           href="https://curriculumresources.edu.gh/"
+           target="_blank"
+           rel="noopener noreferrer">
+
           <div class="icon">📑</div>
-          <strong>Elective Study Guides</strong>
-          <small>Physics, Chem, Bio, Economics & Arts books</small>
-        </button>
+
+          <strong>Additional SHS Resources</strong>
+
+          <small>
+            Explore more official curriculum and
+            supplementary learning materials.
+          </small>
+
+          <span class="link-label">
+            Explore More Resources →
+          </span>
+
+        </a>
+
       </div>
 
+    </section>
 
-  <!-- Coming Soon Popup Modal -->
+  </main>
+
+
+  <!-- COMING SOON MODAL -->
+
   <div id="comingSoonModal" class="modal-overlay hidden">
+
     <div class="modal-card">
+
       <div class="icon-lg">📚</div>
-      <h3 id="modalResourceTitle">Resource Library</h3>
-      <p>We are currently compiling and formatting our digital books and learner's manuals for this section. They will be available for download soon!</p>
-      <button id="closeModal" class="primary" style="width: 100%;">Got it, thanks!</button>
+
+      <h3 id="modalResourceTitle">
+        Resource Library
+      </h3>
+
+      <p>
+        We are currently compiling and formatting
+        our digital books and learning resources
+        for this section. They will be available soon!
+      </p>
+
+      <button id="closeModal"
+              class="primary"
+              style="width: 100%;">
+        Got it, thanks!
+      </button>
+
     </div>
+
   </div>
+
+
+  <!-- FOOTER -->
 
   <footer>
     EduPath Ghana · Helping students learn, practise and grow.
   </footer>
 
+
+  <!-- JAVASCRIPT -->
+
   <script>
-    const modal = document.getElementById("comingSoonModal");
-    const modalResourceTitle = document.getElementById("modalResourceTitle");
-    const closeModalButton = document.getElementById("closeModal");
 
-    // Attach click event to all resource buttons to display the coming soon message
-    document.querySelectorAll(".subject").forEach(button => {
+    const modal =
+      document.getElementById("comingSoonModal");
+
+    const modalResourceTitle =
+      document.getElementById("modalResourceTitle");
+
+    const closeModalButton =
+      document.getElementById("closeModal");
+
+
+    // Coming soon buttons
+
+    document.querySelectorAll("[data-resource]").forEach(button => {
+
       button.addEventListener("click", () => {
-        const resourceName = button.querySelector("strong").textContent;
-        modalResourceTitle.textContent = `${resourceName}`;
+
+        const resourceName = button.dataset.resource;
+
+        modalResourceTitle.textContent = resourceName;
+
         modal.classList.remove("hidden");
+
       });
+
     });
 
-    // Close modal actions
+
+    // Close modal
+
     closeModalButton.addEventListener("click", () => {
+
       modal.classList.add("hidden");
+
     });
 
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
+
+    // Close modal by clicking outside
+
+    modal.addEventListener("click", (event) => {
+
+      if (event.target === modal) {
         modal.classList.add("hidden");
       }
+
     });
+
+
+    // Close modal with Escape key
+
+    document.addEventListener("keydown", (event) => {
+
+      if (event.key === "Escape") {
+        modal.classList.add("hidden");
+      }
+
+    });
+
   </script>
+
 </body>
 </html>
